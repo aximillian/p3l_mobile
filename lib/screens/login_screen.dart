@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:p3l_mobile/services/auth_service.dart';
+import 'package:p3l_mobile/routes.dart'; 
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -11,6 +12,7 @@ class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController passwordController = TextEditingController();
   String? message = '';
 
+  // Fungsi login yang memanggil API
   Future<void> _login() async {
     final username = usernameController.text;
     final password = passwordController.text;
@@ -29,8 +31,9 @@ class _LoginScreenState extends State<LoginScreen> {
       setState(() {
         message = 'Login berhasil! Token: ${result['token']}';
       });
-      // Di sini, Anda bisa mengarahkan pengguna ke halaman lain setelah login berhasil
-      // Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => HomePage()));
+      // Navigasi ke halaman Home setelah login berhasil
+      Navigator.pushReplacementNamed(
+          context, Routes.home); // Ganti 'home' dengan rute yang sesuai
     } else {
       setState(() {
         message = result['message'];
