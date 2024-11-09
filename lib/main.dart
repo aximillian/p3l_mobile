@@ -1,28 +1,22 @@
 import 'package:flutter/material.dart';
-import 'routes.dart'; // File yang mengelola rute aplikasi
-
-// Navigator
-final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
+import 'package:p3l_mobile/theme/app_theme.dart';
+import 'routes/routes.dart';
 
 void main() {
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-
     return MaterialApp(
-
-      title: 'Flutter Navigation App',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
+      title: 'Natural Beauty Center',
+      theme: AppTheme.themeData,
       
-      initialRoute: Routes.login, 
-      onGenerateRoute: Routes.generateRoute,
-      navigatorKey: navigatorKey, 
+      initialRoute: AppRoutes.splash,
+      onGenerateRoute: generateRoute,
     );
   }
 }

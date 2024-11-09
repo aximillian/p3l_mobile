@@ -14,6 +14,8 @@ dependencies:
   http: ^1.1.0
   shared_preferences: ^2.0.13
   cupertino_icons: ^1.0.8
+  fluttertoast: ^8.2.8
+  flutter_svg: ^2.0.5
 
 dev_dependencies:
   flutter_test:
@@ -22,3 +24,15 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+
+  assets:
+    - assets/
+    - assets/images/
+    - assets/icons/
+
+  fonts:
+    - family: Georgia
+      fonts:
+        - asset: assets/fonts/Georgia.ttf
+        - asset: assets/fonts/Georgiab.ttf
+          weight: 700
