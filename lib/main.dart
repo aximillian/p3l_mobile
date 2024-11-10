@@ -3,7 +3,7 @@ import 'package:p3l_mobile/theme/app_theme.dart';
 import 'routes/routes.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -13,7 +13,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Natural Beauty Center',
-      theme: AppTheme.themeData,
+      // theme: AppTheme.themeData,
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+        visualDensity: VisualDensity.adaptivePlatformDensity,
+      ),
       
       initialRoute: AppRoutes.splash,
       onGenerateRoute: generateRoute,

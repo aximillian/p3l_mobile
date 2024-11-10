@@ -22,8 +22,8 @@ class _SplashScreenState extends State<SplashScreen> {
     Timer(const Duration(seconds: 3), () {
       Navigator.of(context).pushReplacement(
         MaterialPageRoute(
-            builder: (context) =>
-                const LoginScreen()), 
+          builder: (context) => const LoginScreen(),
+        ),
       );
     });
   }
@@ -31,20 +31,69 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppTheme.pinkColor,
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Image.asset(
-              'assets/images/image.png', 
-              width: 300, 
-              height: 300, 
+      body: Stack(
+        fit: StackFit.expand,
+        children: [
+
+          // Background image
+          Container(
+            decoration: const BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage('assets/images/login.jpeg'),
+                fit: BoxFit.cover,
+              ),
             ),
-            const SizedBox(height: 100),  
-            const CustomLoadingSpinner(), 
-          ],
-        ),
+          ),
+
+          // Background effect
+          Container(
+            color: AppTheme.blackColor.withOpacity(0.6),
+          ),
+
+          // Content
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+
+              // Logo
+              Image.asset(
+                'assets/images/image.png',
+                width: 150,
+                height: 150,
+              ),
+              const SizedBox(height: 40),
+
+              // Title 
+              const Text(
+                'Your Journey to\nTimeless Beauty\nBegins Here',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: AppTheme.pinkColor,
+                  fontFamily: 'Georgiab',
+                  fontSize: 30,
+                  fontWeight: FontWeight.bold,
+                  shadows: [
+                    Shadow(
+                      blurRadius: 10.0,
+                      color: Colors.black45,
+                      offset: Offset(2, 2),
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(height: 80),
+              
+            ],
+          ),
+
+          // Loading spinner
+          const Positioned(
+            bottom: 150, 
+            left: 0,
+            right: 0,
+            child: CustomLoadingSpinner(color: AppTheme.pinkColor),
+          ),
+        ],
       ),
     );
   }

@@ -1,39 +1,48 @@
 import 'package:flutter/material.dart';
+import 'package:p3l_mobile/theme/app_theme.dart';
 
 class ProductCard extends StatelessWidget {
   final String imageUrl;
   final String productName;
   final String price;
+  final String stock;
 
   const ProductCard({
     super.key,
     required this.imageUrl,
     required this.productName,
     required this.price,
+    required this.stock,
   });
 
   @override
   Widget build(BuildContext context) {
     return Card(
-      elevation: 4.0,
+      elevation: 10.0,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(10.0),
       ),
+
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+
           // Bagian Gambar Produk
           ClipRRect(
             borderRadius:
                 const BorderRadius.vertical(top: Radius.circular(10.0)),
-            child: Image.asset(
+            child: Image.network(
               imageUrl,
               fit: BoxFit.cover,
               width: double.infinity,
-              height: 150.0, // Sesuaikan tinggi gambar
+              height: 150.0, 
+              errorBuilder: (context, error, stackTrace) {
+                return const Icon(Icons.broken_image, size: 150.0);
+              },
             ),
           ),
 
+          // Bagian deskripsi produk
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Column(
@@ -47,18 +56,31 @@ class ProductCard extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
+                const SizedBox(height: 8.0), 
 
-                // Harga Produk
-                Align(
-                  alignment: Alignment.bottomRight,
-                  child: Text(
-                    price,
-                    style: const TextStyle(
-                      fontSize: 16.0,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.grey,
+                // Row untuk stok dan harga
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    // Stok Produk
+                    Text(
+                      price,
+                      style: const TextStyle(
+                        fontSize: 14.0,
+                        color: AppTheme.blackColor,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
-                  ),
+                    // Harga Produk
+                    Text(
+                      'Stok: $stock',
+                      style: const TextStyle(
+                        fontSize: 12.0,
+                        color: Colors.grey,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
                 ),
               ],
             ),

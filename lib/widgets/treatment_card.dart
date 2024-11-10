@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:p3l_mobile/theme/app_theme.dart';
 
 class TreatmentCard extends StatelessWidget {
   final String imageUrl;
@@ -7,12 +8,12 @@ class TreatmentCard extends StatelessWidget {
   final String requirements;
 
   const TreatmentCard({
-    Key? key,
+    super.key,
     required this.imageUrl,
     required this.treatmentName,
     required this.price,
     required this.requirements,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -21,25 +22,24 @@ class TreatmentCard extends StatelessWidget {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(10.0),
       ),
+
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Gambar Perawatan di bagian atas
+
+          // Gambar Perawatan
           ClipRRect(
-            borderRadius:
-                const BorderRadius.vertical(top: Radius.circular(10.0)),
-            child: Image.asset(
-              imageUrl,
-              fit: BoxFit.cover,
-              width: double.infinity,
-              height: 150.0, // Sesuaikan tinggi gambar
-            ),
+            borderRadius: const BorderRadius.vertical(top: Radius.circular(10.0)),
+            child: _buildImage(imageUrl),
           ),
+
+          // Bagian deskripsi perawatan
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+
                 // Nama Perawatan
                 Text(
                   treatmentName,
@@ -48,22 +48,24 @@ class TreatmentCard extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                const SizedBox(height: 4.0), // Jarak antar elemen
+                const SizedBox(height: 4.0), 
+
                 // Harga Perawatan
                 Text(
-                  price,
+                  'Rp $price',
                   style: const TextStyle(
-                    fontSize: 16.0,
-                    color: Colors.grey,
+                    fontSize: 14.0,
+                    color: AppTheme.blackColor,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
                 const SizedBox(height: 4.0),
+
                 // Syarat Perawatan
                 Text(
                   requirements,
                   style: const TextStyle(
-                    fontSize: 14.0,
+                    fontSize: 12.0,
                     color: Colors.grey,
                   ),
                 ),
@@ -73,5 +75,43 @@ class TreatmentCard extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  Widget _buildImage(String imageUrl) {
+    if (imageUrl.startsWith('http') || imageUrl.startsWith('https')) {
+      return Image.network(
+        imageUrl,
+        fit: BoxFit.cover,
+        width: double.infinity,
+        height: 150.0,
+        loadingBuilder: (context, child, loadingProgress) {
+          if (loadingProgress == null) return child;
+          return Center(
+            child: CircularProgressIndicator(
+              value: loadingProgress.expectedTotalBytes != null
+                  ? loadingProgress.cumulativeBytesLoaded / (loadingProgress.expectedTotalBytes ?? 1)
+                  : null,
+            ),
+          );
+        },
+        errorBuilder: (context, error, stackTrace) {
+          print('Error loading image: $imageUrl'); // Log URL gambar
+          print('Error details: $error'); // Log detail error
+          return const Icon(Icons.broken_image, size: 150.0);
+        },
+      );
+    } else {
+      return Image.asset(
+        imageUrl,
+        fit: BoxFit.cover,
+        width: double.infinity,
+        height: 150.0,
+        errorBuilder: (context, error, stackTrace) {
+          print('Error loading image: $imageUrl'); // Log URL gambar
+          print('Error details: $error'); // Log detail error
+          return const Icon(Icons.broken_image, size: 150.0);
+        },
+      );
+    }
   }
 }
