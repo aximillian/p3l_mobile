@@ -1,15 +1,26 @@
-class User {
-  final String username;
-  final String jabatan;
-  final String token;
+import 'pegawai.dart';
+import 'customer.dart';
 
-  User({required this.username, required this.jabatan, required this.token});
+class User {
+  final String role;
+  final Pegawai? pegawai;
+  final Customer? customer;
+
+  User({required this.role, this.pegawai, this.customer});
 
   factory User.fromJson(Map<String, dynamic> json) {
-    return User(
-      username: json['user']['username'],
-      jabatan: json['user']['jabatan_pegawai'],
-      token: json['access_token'],
-    );
+    if (json['role'] == 'pegawai') {
+      return User(
+        role: json['role'],
+        pegawai: Pegawai.fromJson(json['user']),
+      );
+    } else if (json['role'] == 'customer') {
+      return User(
+        role: json['role'],
+        customer: Customer.fromJson(json['user']),
+      );
+    } else {
+      throw Exception('Unknown role');
+    }
   }
 }
