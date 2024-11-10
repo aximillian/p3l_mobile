@@ -18,100 +18,93 @@ class TreatmentCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      elevation: 4.0,
+      elevation: 10.0,
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(10.0),
+        borderRadius: BorderRadius.circular(15.0),
       ),
-
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-
-          // Gambar Perawatan
-          ClipRRect(
-            borderRadius: const BorderRadius.vertical(top: Radius.circular(10.0)),
-            child: _buildImage(imageUrl),
+      shadowColor: Colors.black54,
+      child: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(15.0),
+          gradient: LinearGradient(
+            colors: [Colors.white, Colors.grey.shade200],
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
           ),
+        ),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
 
-          // Bagian deskripsi perawatan
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-
-                // Nama Perawatan
-                Text(
-                  treatmentName,
-                  style: const TextStyle(
-                    fontSize: 18.0,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                const SizedBox(height: 4.0), 
-
-                // Harga Perawatan
-                Text(
-                  'Rp $price',
-                  style: const TextStyle(
-                    fontSize: 14.0,
-                    color: AppTheme.blackColor,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                const SizedBox(height: 4.0),
-
-                // Syarat Perawatan
-                Text(
-                  requirements,
-                  style: const TextStyle(
-                    fontSize: 12.0,
-                    color: Colors.grey,
-                  ),
-                ),
-              ],
+            // Gambar Perawatan
+            ClipRRect(
+              borderRadius: const BorderRadius.horizontal(left: Radius.circular(15.0)),
+              child: Image.network(
+                imageUrl,
+                fit: BoxFit.cover,
+                width: 150.0,
+                height: 150.0,
+                errorBuilder: (context, error, stackTrace) {
+                  return const Icon(Icons.broken_image, size: 150.0);
+                },
+              ),
             ),
-          ),
-        ],
+            
+            // Bagian deskripsi perawatan
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.all(12.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+
+                    // Nama Perawatan
+                    Text(
+                      treatmentName,
+                      style: const TextStyle(
+                        fontSize: 20.0,
+                        fontWeight: FontWeight.bold,
+                        color: AppTheme.blackColor,
+                      ),
+                    ),
+                    const SizedBox(height: 8.0), 
+
+                    // Harga Perawatan
+                    Text(
+                      price,
+                      style: const TextStyle(
+                        fontSize: 16.0,
+                        color: AppTheme.blackColor,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    const SizedBox(height: 8.0),
+
+                    const Text(
+                      "Syarat Perawatan", 
+                      style: TextStyle(
+                        fontSize: 16.0, 
+                        fontWeight: 
+                        FontWeight.bold,
+                        color: AppTheme.blackColor,
+                      ),
+                    ),
+
+                    // Syarat Perawatan
+                    Text(
+                      requirements,
+                      style: const TextStyle(
+                        fontSize: 14.0,
+                        color: Colors.grey,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
-  }
-
-  Widget _buildImage(String imageUrl) {
-    if (imageUrl.startsWith('http') || imageUrl.startsWith('https')) {
-      return Image.network(
-        imageUrl,
-        fit: BoxFit.cover,
-        width: double.infinity,
-        height: 150.0,
-        loadingBuilder: (context, child, loadingProgress) {
-          if (loadingProgress == null) return child;
-          return Center(
-            child: CircularProgressIndicator(
-              value: loadingProgress.expectedTotalBytes != null
-                  ? loadingProgress.cumulativeBytesLoaded / (loadingProgress.expectedTotalBytes ?? 1)
-                  : null,
-            ),
-          );
-        },
-        errorBuilder: (context, error, stackTrace) {
-          print('Error loading image: $imageUrl'); // Log URL gambar
-          print('Error details: $error'); // Log detail error
-          return const Icon(Icons.broken_image, size: 150.0);
-        },
-      );
-    } else {
-      return Image.asset(
-        imageUrl,
-        fit: BoxFit.cover,
-        width: double.infinity,
-        height: 150.0,
-        errorBuilder: (context, error, stackTrace) {
-          print('Error loading image: $imageUrl'); // Log URL gambar
-          print('Error details: $error'); // Log detail error
-          return const Icon(Icons.broken_image, size: 150.0);
-        },
-      );
-    }
   }
 }

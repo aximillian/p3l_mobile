@@ -19,9 +19,9 @@ class Treatment {
     return Treatment(
       id: json['id'] as int?,
       namaPerawatan: json['nama_perawatan'] ?? 'Unknown Treatment',
-      keteranganPerawatan: json['keterangan_produk'] ?? 'No description',
-      syaratPerawatan: json['syarat_perawatan']   ?? 'No requirements',
-      hargaPerawatan: json['harga_perawatan']  as int?,
+      keteranganPerawatan: json['keterangan_perawatan'] ?? 'No description', 
+      syaratPerawatan: json['syarat_perawatan'] ?? 'No requirements',
+      hargaPerawatan: json['harga_perawatan'] as int?,
       gambarPerawatan: json['gambar_perawatan'],
     );
   }
