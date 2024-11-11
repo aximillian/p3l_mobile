@@ -39,9 +39,4 @@ class ProductService {
     }
   }
 
-  getRecommendedProducts() {}
-
-  fetchRecommendedProducts() {}
-
-  getProducts() {}
 }
