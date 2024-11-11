@@ -215,6 +215,14 @@ class _HomeScreenState extends State<HomeScreen> {
                 const MeetOurGlowistWidget(),
                 AboutUsWidget(),
                 const SizedBox(height: 16),
+                
+                const Text(
+                  'Schedules',
+                  style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
+                ),
+                const SizedBox(height: 16),
+                _buildSchedules(),
+                const SizedBox(height: 16),
               ],
               const SizedBox(height: 16),
             ],
@@ -222,6 +230,184 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       ),
       bottomNavigationBar: const BottomNavBar(),
+    );
+  }
+
+  Widget _buildSchedules() {
+    return SizedBox(
+      height: 300, // Adjust height as needed
+      child: ListView(
+        scrollDirection: Axis.horizontal,
+        children: [
+          _buildScheduleCard('Doctor Schedule', _buildDoctorSchedule()),
+          _buildScheduleCard('Beautician Schedule', _buildBeauticianSchedule()),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildScheduleCard(String title, Widget scheduleContent) {
+    return Card(
+      margin: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(15.0),
+      ),
+      elevation: 5,
+      child: Container(
+        width: 300, // Adjust width as needed
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              title,
+              style: const TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
+            ),
+            const Divider(),
+            Expanded(child: scheduleContent),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildDoctorSchedule() {
+    final schedule = {
+      'Tuesday': {
+        'Shift 1 (09:00 - 15:00)': ['Dr. Anita'],
+        'Shift 2 (15:00 - 21:00)': ['Dr. Anita'],
+      },
+      'Wednesday': {
+        'Shift 1 (09:00 - 15:00)': ['Dr. Anita'],
+        'Shift 2 (15:00 - 21:00)': ['Dr. Becky'],
+      },
+      'Thursday': {
+        'Shift 1 (09:00 - 15:00)': ['Dr. Becky'],
+        'Shift 2 (15:00 - 21:00)': ['Dr. Charlie'],
+      },
+      'Friday': {
+        'Shift 1 (09:00 - 15:00)': ['Dr. Anita', 'Dr. Becky'],
+        'Shift 2 (15:00 - 21:00)': ['Dr. Becky', 'Dr. Charlie'],
+      },
+      'Saturday': {
+        'Shift 1 (09:00 - 15:00)': ['Dr. Anita', 'Dr. Charlie'],
+        'Shift 2 (15:00 - 21:00)': ['Dr. Becky', 'Dr. Charlie'],
+      },
+      'Sunday': {
+        'Shift 1 (09:00 - 15:00)': ['Dr. Anita', 'Dr. Charlie'],
+        'Shift 2 (15:00 - 21:00)': ['Dr. Becky', 'Dr. Charlie'],
+      },
+    };
+
+    return ListView(
+      shrinkWrap: true,
+      children: schedule.entries.map((entry) {
+        return Padding(
+          padding: const EdgeInsets.symmetric(vertical: 4.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                entry.key,
+                style: const TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
+              ),
+              const Divider(),
+              ...entry.value.entries.map((shiftEntry) {
+                return Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 2.0),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: Text(
+                          shiftEntry.key,
+                          style: const TextStyle(fontSize: 14.0, fontWeight: FontWeight.w500),
+                        ),
+                      ),
+                      Expanded(
+                        child: Text(
+                          shiftEntry.value.join(', '),
+                          style: const TextStyle(fontSize: 14.0),
+                          textAlign: TextAlign.right,
+                        ),
+                      ),
+                    ],
+                  ),
+                );
+              }).toList(),
+            ],
+          ),
+        );
+      }).toList(),
+    );
+  }
+
+  Widget _buildBeauticianSchedule() {
+    final schedule = {
+      'Tuesday': {
+        'Shift 1 (09:00 - 15:00)': ['Audy', 'Cintya', 'Dio'],
+        'Shift 2 (15:00 - 21:00)': ['Bella', 'Elisa', 'Fendy'],
+      },
+      'Wednesday': {
+        'Shift 1 (09:00 - 15:00)': ['Audy', 'Elisa', 'Fendy'],
+        'Shift 2 (15:00 - 21:00)': ['Bella', 'Elisa', 'Dio'],
+      },
+      'Thursday': {
+        'Shift 1 (09:00 - 15:00)': ['Audy', 'Elisa', 'Dio'],
+        'Shift 2 (15:00 - 21:00)': ['Bella', 'Cintya', 'Fendy'],
+      },
+      'Friday': {
+        'Shift 1 (09:00 - 15:00)': ['Audy', 'Cintya', 'Fendy'],
+        'Shift 2 (15:00 - 21:00)': ['Bella', 'Cintya', 'Dio'],
+      },
+      'Saturday': {
+        'Shift 1 (09:00 - 15:00)': ['Audy', 'Elisa', 'Dio'],
+        'Shift 2 (15:00 - 21:00)': ['Bella', 'Cintya', 'Fendy'],
+      },
+      'Sunday': {
+        'Shift 1 (09:00 - 15:00)': ['Audy', 'Elisa', 'Fendy'],
+        'Shift 2 (15:00 - 21:00)': ['Bella', 'Cintya', 'Dio'],
+      },
+    };
+
+    return ListView(
+      shrinkWrap: true,
+      children: schedule.entries.map((entry) {
+        return Padding(
+          padding: const EdgeInsets.symmetric(vertical: 4.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                entry.key,
+                style: const TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
+              ),
+              const Divider(),
+              ...entry.value.entries.map((shiftEntry) {
+                return Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 2.0),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: Text(
+                          shiftEntry.key,
+                          style: const TextStyle(fontSize: 14.0, fontWeight: FontWeight.w500),
+                        ),
+                      ),
+                      Expanded(
+                        child: Text(
+                          shiftEntry.value.join(', '),
+                          style: const TextStyle(fontSize: 14.0),
+                          textAlign: TextAlign.right,
+                        ),
+                      ),
+                    ],
+                  ),
+                );
+              }).toList(),
+            ],
+          ),
+        );
+      }).toList(),
     );
   }
 }

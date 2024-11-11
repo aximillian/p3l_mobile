@@ -11,11 +11,11 @@ class BottomNavBar extends StatelessWidget {
       items: [
         BottomNavigationBarItem(
           icon: SizedBox(
-            width: 24, // Atur lebar ikon
-            height: 24, // Atur tinggi ikon
+            width: 24, 
+            height: 24, 
             child: SvgPicture.asset('assets/icons/home.svg'),
           ), 
-          label: 'Home',
+          label: '',
           ),
 
         BottomNavigationBarItem(
@@ -35,8 +35,20 @@ class BottomNavBar extends StatelessWidget {
           ),          
           label: 'Treatment',
           ),
+        
+        BottomNavigationBarItem(
+          icon: SizedBox(
+            width: 24,
+            height: 24,
+            child: SvgPicture.asset('assets/icons/jadwal.svg'),
+          ),
+          label: 'Schedule',
+          ),
       ],
 
+      selectedItemColor: Colors.black, 
+      unselectedItemColor: Colors.grey, 
+      
       onTap: (index) {
         switch (index) {
           case 0:
@@ -47,6 +59,9 @@ class BottomNavBar extends StatelessWidget {
             break;
           case 2:
             Navigator.pushNamed(context, AppRoutes.perawatan);
+            break;
+          case 3:
+            Navigator.pushNamed(context, AppRoutes.jadwal);
             break;
         }
       },

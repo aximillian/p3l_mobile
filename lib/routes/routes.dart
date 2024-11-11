@@ -5,6 +5,7 @@ import 'package:p3l_mobile/screens/product_screen.dart';
 import 'package:p3l_mobile/screens/splash_screen.dart';
 import 'package:p3l_mobile/screens/treatment_screen.dart';
 import 'package:p3l_mobile/screens/profile_screen.dart';
+import 'package:p3l_mobile/screens/schedule_screen.dart';
 
 class AppRoutes {
   static const String splash = '/';
@@ -12,6 +13,7 @@ class AppRoutes {
   static const String home = '/home';
   static const String produk = '/produk';
   static const String perawatan = '/perawatan';
+  static const String jadwal = '/jadwal';
   static const String profile = '/profile';
 }
 
@@ -27,6 +29,8 @@ Route<dynamic> generateRoute(RouteSettings settings) {
       return MaterialPageRoute(builder: (_) => const ProductScreen());
     case AppRoutes.perawatan:
       return MaterialPageRoute(builder: (_) => const TreatmentScreen());
+    case AppRoutes.jadwal:
+      return MaterialPageRoute(builder: (_) => const ScheduleScreen());
     case AppRoutes.profile:
       return MaterialPageRoute(builder: (_) => const ProfileScreen());
     default:
