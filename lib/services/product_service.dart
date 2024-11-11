@@ -3,8 +3,7 @@ import 'package:http/http.dart' as http;
 import 'package:p3l_mobile/entity/product%20.dart';
 
 class ProductService {
-  static const String baseUrl =
-    'http://10.0.2.2:8000/api';
+  static const String baseUrl = 'http://10.0.2.2:8000/api';
 
   Future<List<Product>> fetchProducts() async {
     final response = await http.get(Uri.parse('$baseUrl/produk'));
@@ -38,5 +37,4 @@ class ProductService {
       throw Exception('No products found with that name');
     }
   }
-
 }

@@ -2,11 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:image_picker/image_picker.dart';
-import 'package:p3l_mobile/entity/riwayat.dart'; // Import the Riwayat model
-import 'package:p3l_mobile/services/riwayat_service.dart';
+import 'package:p3l_mobile/entity/riwayat.dart'; 
 import 'dart:io';
-import '../helper/shared_preferences.dart'; // For token and user data
+import '../helper/shared_preferences.dart'; 
 import 'package:intl/intl.dart';
 
 class ProfileScreen extends StatefulWidget {
@@ -22,6 +20,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   late String userId;
   late String token;
   bool isLoadingHistory = true;  // Track loading state for transaction history
+  late String userRole; // Add userRole to track the role of the user
 
   // Get the user data from local storage
   Future<Map<String, dynamic>> _getUserData() async {
@@ -92,6 +91,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
           _getTransactionHistory(userId, token);  // Only fetch transaction history once
         }
       });
+
+      // Fetch user role
+      StorageHelper.getUserRole().then((role) {
+        setState(() {
+          userRole = role ?? 'customer'; // Default to 'customer' if role is not found
+        });
+      });
     });
   }
 
@@ -161,41 +167,47 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         ),
                         const SizedBox(height: 20),
 
-                        // Display user profile data in Cards
-                        _buildProfileCard('Username', userData['username'] ?? ''),
-                        _buildProfileCard(
-                          'Tanggal Lahir',
-                          userData['tanggal_lahir'] is String
-                              ? userData['tanggal_lahir']
-                              : DateFormat('dd-MM-yyyy').format(
-                                  DateTime.parse(userData['tanggal_lahir']?.toString() ?? '')),
-                        ),
-                        _buildProfileCard('Jenis Kelamin', userData['jenis_kelamin'] ?? ''),
-                        _buildProfileCard('Alamat', userData['alamat_customer'] ?? ''),
-                        _buildProfileCard('Nomor Telepon', userData['nomor_telepon'] ?? ''),
-                        _buildProfileCard('Email', userData['email_customer'] ?? ''),
-                        _buildProfileCard('Poin Customer', userData['poin_customer']?.toString() ?? '0'),
+                        // Display user profile data based on role
+                        if (userRole == 'customer') ...[
+                          _buildProfileCard('Username', userData['username'] ?? ''),
+                          _buildProfileCard(
+                            'Tanggal Lahir',
+                            userData['tanggal_lahir'] is String
+                                ? userData['tanggal_lahir']
+                                : DateFormat('dd-MM-yyyy').format(
+                                    DateTime.parse(userData['tanggal_lahir']?.toString() ?? '')),
+                          ),
+                          _buildProfileCard('Jenis Kelamin', userData['jenis_kelamin'] ?? ''),
+                          _buildProfileCard('Alamat', userData['alamat_customer'] ?? ''),
+                          _buildProfileCard('Nomor Telepon', userData['nomor_telepon'] ?? ''),
+                          _buildProfileCard('Email', userData['email_customer'] ?? ''),
+                          _buildProfileCard('Poin Customer', userData['poin_customer']?.toString() ?? '0'),
 
-                        // Transaction History Section
-                        const SizedBox(height: 20),
-                        Text(
-                          'Riwayat Transaksi',
-                          style: GoogleFonts.lato(fontSize: 18, fontWeight: FontWeight.bold),
-                        ),
-                        const SizedBox(height: 10),
-                        isLoadingHistory
-                            ? const Center(child: CircularProgressIndicator())  // Show a loading spinner while fetching
-                            : transactionHistory.isEmpty
-                                ? const Center(child: Text('No transaction history available.'))
-                                : ListView.builder(
-                                    shrinkWrap: true,
-                                    physics: const NeverScrollableScrollPhysics(),
-                                    itemCount: transactionHistory.length,
-                                    itemBuilder: (context, index) {
-                                      final transaction = transactionHistory[index];
-                                      return _buildTransactionCard(transaction);
-                                    },
-                                  ),
+                          // Transaction History Section
+                          const SizedBox(height: 20),
+                          Text(
+                            'Riwayat Transaksi',
+                            style: GoogleFonts.lato(fontSize: 18, fontWeight: FontWeight.bold),
+                          ),
+                          const SizedBox(height: 10),
+                          isLoadingHistory
+                              ? const Center(child: CircularProgressIndicator())  // Show a loading spinner while fetching
+                              : transactionHistory.isEmpty
+                                  ? const Center(child: Text('No transaction history available.'))
+                                  : ListView.builder(
+                                      shrinkWrap: true,
+                                      physics: const NeverScrollableScrollPhysics(),
+                                      itemCount: transactionHistory.length,
+                                      itemBuilder: (context, index) {
+                                        final transaction = transactionHistory[index];
+                                        return _buildTransactionCard(transaction);
+                                      },
+                                    ),
+                        ] else if (userRole == 'pegawai') ...[
+                          _buildProfileCard('Nama', userData['username'] ?? ''),
+                          _buildProfileCard('Jabatan', userData['jabatan'] ?? ''),
+                          _buildProfileCard('Nomor Telepon', userData['nomor_telepon'] ?? ''),
+                        ],
                       ],
                     ),
                   );

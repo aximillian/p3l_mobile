@@ -35,18 +35,34 @@ class _LoginScreenState extends State<LoginScreen> {
     });
 
     if (response['status']) {
-      Fluttertoast.showToast(msg: response['message']);
+      Fluttertoast.showToast(
+        msg: 'Welcome back! You have successfully logged in.',
+        toastLength: Toast.LENGTH_LONG,
+        gravity: ToastGravity.BOTTOM,
+        backgroundColor: Colors.green,
+        textColor: Colors.white,
+        fontSize: 12.0,
+      );
       Navigator.pushReplacementNamed(context, '/home');
     } else {
-      Fluttertoast.showToast(msg: response['message']);
+      Fluttertoast.showToast(
+        msg: response['message'] == 'Unauthorized'
+            ? 'You do not have the necessary permissions to access this account.'
+            : response['message'] == 'Invalid Credential'
+                ? 'The username or password you entered is incorrect.'
+                : response['message'],
+        toastLength: Toast.LENGTH_LONG,
+        gravity: ToastGravity.BOTTOM,
+        backgroundColor: Colors.red,
+        textColor: Colors.white,
+        fontSize: 12.0,
+      );
     }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
-      // Background
       body: Container(
         decoration: const BoxDecoration(
           gradient: LinearGradient(
@@ -55,13 +71,9 @@ class _LoginScreenState extends State<LoginScreen> {
             end: Alignment.bottomCenter,
           ),
         ),
-
-        // Content
         padding: const EdgeInsets.all(16.0),
         child: Center(
           child: SingleChildScrollView(
-
-            // Login Form
             child: Container(
               padding: const EdgeInsets.all(24.0),
               decoration: BoxDecoration(
@@ -75,21 +87,17 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                 ],
               ),
-
-              // content dalam form
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-
-                  // Welcome Text
                   const Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       SizedBox(width: 10),
                       Text(
-                        'Welcome Back!',
+                        'Let\'s Get Start Exploring',
                         style: TextStyle(
-                          fontSize: 30,
+                          fontSize: 28,
                           fontWeight: FontWeight.bold,
                           color: AppTheme.pinkColor,
                           shadows: [
@@ -104,8 +112,6 @@ class _LoginScreenState extends State<LoginScreen> {
                     ],
                   ),
                   const SizedBox(height: 5),
-
-                  // Sign in Text
                   const Text(
                     'Sign in with your account',
                     style: TextStyle(
@@ -114,42 +120,18 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                   ),
                   const SizedBox(height: 35),
-
-                  // Username Field
                   CustomTextField(
                     controller: _usernameController,
                     labelText: 'Username',
                   ),
                   const SizedBox(height: 20),
-
-                  // Password Field
                   CustomTextField(
                     controller: _passwordController,
                     labelText: 'Password',
                     obscureText: true,
                   ),
                   const SizedBox(height: 10),
-
-                  // Forgot Password Option
-                  Align(
-                    alignment: Alignment.centerRight,
-                    child: GestureDetector(
-                      onTap: () {
-                        // Add forgot password functionality
-                      },
-                      child: const Text(
-                        'Forgot Password?',
-                        style: TextStyle(
-                          color: AppTheme.blackColor,
-                          fontSize: 14,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(height: 20),
-
-                  // Checkbox Remember Me
+                  
                   Row(
                     children: [
                       Checkbox(
@@ -164,8 +146,6 @@ class _LoginScreenState extends State<LoginScreen> {
                       const Text('Remember Me'),
                     ],
                   ),
-
-                  // Checkbox Accept Terms
                   Row(
                     children: [
                       Checkbox(
@@ -183,8 +163,6 @@ class _LoginScreenState extends State<LoginScreen> {
                     ],
                   ),
                   const SizedBox(height: 30),
-
-                  // Login Button
                   _isLoading
                       ? const CustomLoadingSpinner(color: AppTheme.blackColor)
                       : CustomButton(

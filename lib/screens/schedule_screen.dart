@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:p3l_mobile/widgets/bottom_navbar.dart';
 import 'package:p3l_mobile/theme/app_theme.dart';
+import 'package:p3l_mobile/data/schedule_data.dart';
+import 'package:p3l_mobile/widgets/schedule_card.dart';
 
 class ScheduleScreen extends StatefulWidget {
   const ScheduleScreen({super.key});
@@ -50,7 +52,7 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
                       decoration: BoxDecoration(
                         color: AppTheme.whiteColor,
                         borderRadius: BorderRadius.circular(8.0),
-                        boxShadow: [
+                        boxShadow: const [
                           BoxShadow(
                             color: Colors.black26,
                             blurRadius: 4.0,
@@ -101,168 +103,33 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
   }
 
   Widget _buildDoctorSchedule(String day) {
-    final schedule = {
-      'Tuesday': {
-        'Shift 1 (09:00 - 15:00)': ['Dr. Anita'],
-        'Shift 2 (15:00 - 21:00)': ['Dr. Anita'],
-      },
-      'Wednesday': {
-        'Shift 1 (09:00 - 15:00)': ['Dr. Anita'],
-        'Shift 2 (15:00 - 21:00)': ['Dr. Becky'],
-      },
-      'Thursday': {
-        'Shift 1 (09:00 - 15:00)': ['Dr. Becky'],
-        'Shift 2 (15:00 - 21:00)': ['Dr. Charlie'],
-      },
-      'Friday': {
-        'Shift 1 (09:00 - 15:00)': ['Dr. Anita', 'Dr. Becky'],
-        'Shift 2 (15:00 - 21:00)': ['Dr. Becky', 'Dr. Charlie'],
-      },
-      'Saturday': {
-        'Shift 1 (09:00 - 15:00)': ['Dr. Anita', 'Dr. Charlie'],
-        'Shift 2 (15:00 - 21:00)': ['Dr. Becky', 'Dr. Charlie'],
-      },
-      'Sunday': {
-        'Shift 1 (09:00 - 15:00)': ['Dr. Anita', 'Dr. Charlie'],
-        'Shift 2 (15:00 - 21:00)': ['Dr. Becky', 'Dr. Charlie'],
-      },
-    };
-
     if (day == 'All Days' || day.isEmpty) {
       return Column(
-        children: schedule.entries.map((entry) {
-          return _buildScheduleCard(entry.key, entry.value);
+        children: doctorSchedule.entries.map((entry) {
+          return ScheduleCard(day: entry.key, daySchedule: entry.value);
         }).toList(),
       );
     } else {
-      return _buildSchedule(schedule[day] ?? {});
+      return _buildSchedule(doctorSchedule[day] ?? {});
     }
   }
 
   Widget _buildBeauticianSchedule(String day) {
-    final schedule = {
-      'Tuesday': {
-        'Shift 1 (09:00 - 15:00)': ['Audy', 'Cintya', 'Dio'],
-        'Shift 2 (15:00 - 21:00)': ['Bella', 'Elisa', 'Fendy'],
-      },
-      'Wednesday': {
-        'Shift 1 (09:00 - 15:00)': ['Audy', 'Elisa', 'Fendy'],
-        'Shift 2 (15:00 - 21:00)': ['Bella', 'Elisa', 'Dio'],
-      },
-      'Thursday': {
-        'Shift 1 (09:00 - 15:00)': ['Audy', 'Elisa', 'Dio'],
-        'Shift 2 (15:00 - 21:00)': ['Bella', 'Cintya', 'Fendy'],
-      },
-      'Friday': {
-        'Shift 1 (09:00 - 15:00)': ['Audy', 'Cintya', 'Fendy'],
-        'Shift 2 (15:00 - 21:00)': ['Bella', 'Cintya', 'Dio'],
-      },
-      'Saturday': {
-        'Shift 1 (09:00 - 15:00)': ['Audy', 'Elisa', 'Dio'],
-        'Shift 2 (15:00 - 21:00)': ['Bella', 'Cintya', 'Fendy'],
-      },
-      'Sunday': {
-        'Shift 1 (09:00 - 15:00)': ['Audy', 'Elisa', 'Fendy'],
-        'Shift 2 (15:00 - 21:00)': ['Bella', 'Cintya', 'Dio'],
-      },
-    };
-
     if (day == 'All Days' || day.isEmpty) {
       return Column(
-        children: schedule.entries.map((entry) {
-          return _buildScheduleCard(entry.key, entry.value);
+        children: beauticianSchedule.entries.map((entry) {
+          return ScheduleCard(day: entry.key, daySchedule: entry.value);
         }).toList(),
       );
     } else {
-      return _buildSchedule(schedule[day] ?? {});
+      return _buildSchedule(beauticianSchedule[day] ?? {});
     }
-  }
-
-  Widget _buildScheduleCard(String day, Map<String, List<String>> daySchedule) {
-    return Card(
-      margin: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(15.0),
-      ),
-      elevation: 5,
-      shadowColor: Colors.black26,
-      child: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              day,
-              style: const TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, color: AppTheme.blackColor),
-            ),
-            const Divider(color: AppTheme.blackColor),
-            ...daySchedule.entries.map((entry) {
-              return Padding(
-                padding: const EdgeInsets.symmetric(vertical: 4.0),
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: Text(
-                        entry.key,
-                        style: const TextStyle(fontSize: 16.0, fontWeight: FontWeight.w500, color: AppTheme.blackColor),
-                      ),
-                    ),
-                    Expanded(
-                      child: Text(
-                        entry.value.join(', '),
-                        style: const TextStyle(fontSize: 16.0, color: AppTheme.blackColor),
-                        textAlign: TextAlign.right,
-                      ),
-                    ),
-                  ],
-                ),
-              );
-            }).toList(),
-          ],
-        ),
-      ),
-    );
   }
 
   Widget _buildSchedule(Map<String, List<String>> daySchedule) {
     return Column(
       children: daySchedule.entries.map((entry) {
-        return Card(
-          margin: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(15.0),
-          ),
-          elevation: 5,
-          shadowColor: Colors.black26,
-          child: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  entry.key,
-                  style: const TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, color: AppTheme.blackColor),
-                ),
-                const Divider(color: AppTheme.blackColor),
-                ...entry.value.map((name) {
-                  return Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 4.0),
-                    child: Row(
-                      children: [
-                        Expanded(
-                          child: Text(
-                            name,
-                            style: const TextStyle(fontSize: 16.0, fontWeight: FontWeight.w500, color: AppTheme.blackColor),
-                          ),
-                        ),
-                      ],
-                    ),
-                  );
-                }).toList(),
-              ],
-            ),
-          ),
-        );
+        return ScheduleCard(day: entry.key, daySchedule: {entry.key: entry.value});
       }).toList(),
     );
   }
