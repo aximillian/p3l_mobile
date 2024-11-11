@@ -3,6 +3,7 @@ import 'package:p3l_mobile/entity/product%20.dart';
 import 'package:p3l_mobile/entity/treatment.dart';
 import 'package:p3l_mobile/screens/profile_screen.dart';
 import 'package:p3l_mobile/screens/product_screen.dart';
+import 'package:p3l_mobile/theme/app_theme.dart';
 import '../widgets/bottom_navbar.dart';
 import '../widgets/custom_search_field.dart';
 import '../services/treatment_service.dart';
@@ -84,7 +85,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
           CarouselSlider(
             options: CarouselOptions(
-              height: 200.0,
+              height: 150.0,
               autoPlay: true,
               enlargeCenterPage: true,
               onPageChanged: (index, reason) {
@@ -207,6 +208,155 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                     ],
                   ],
+                  const SizedBox(height: 16),
+
+                  // Meet Our Glowist
+                  const Text(
+                    'Meet Our Glowist',
+                    style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
+                  ),
+                  const SizedBox(height: 16),
+                  CarouselSlider(
+                    options: CarouselOptions(
+                      height: 450.0,
+                      autoPlay: true,
+                      enlargeCenterPage: true,
+                    ),
+                    items: [
+                      Card(
+                        margin: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 8.0),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Container(
+                              decoration: const BoxDecoration(
+                                shape: BoxShape.circle,
+                                gradient: LinearGradient(
+                                  colors: [Color(0xFFFF7E5F), Color(0xFFFEB47B)],
+                                  begin: Alignment.centerLeft,
+                                  end: Alignment.centerRight,
+                                ),
+                              ),
+                              padding: const EdgeInsets.all(4.0),
+                              child: const CircleAvatar(
+                                radius: 40,
+                                backgroundImage: AssetImage('assets/images/dokter.png'),
+                              ),
+                            ),
+                            const Padding(
+                              padding: EdgeInsets.all(16.0),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    'Doctor',
+                                    style: TextStyle(
+                                      fontSize: 18.0,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                  SizedBox(height: 8),
+                                  Text(
+                                    'At Natural Beauty Center, our doctors are dedicated professionals committed to providing each patient with the highest level of care tailored to individual skin types and needs. With deep knowledge and extensive experience in skin health, our doctors use the latest technology and safe methods to help you achieve healthy, radiant skin. Your safety and comfort are our top priorities!',
+                                    style: TextStyle(fontSize: 14.0),
+                                    textAlign: TextAlign.center,
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Card(
+                        margin: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 8.0),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Container(
+                              decoration: const BoxDecoration(
+                                shape: BoxShape.circle,
+                                gradient: LinearGradient(
+                                  colors: [Color(0xFFFF7E5F), Color(0xFFFEB47B)],
+                                  begin: Alignment.centerLeft,
+                                  end: Alignment.centerRight,
+                                ),
+                              ),
+                              padding: const EdgeInsets.all(4.0),
+                              child: const CircleAvatar(
+                                radius: 40,
+                                backgroundImage: AssetImage('assets/images/beautician.png'),
+                              ),
+                            ),
+                            const Padding(
+                              padding: EdgeInsets.all(16.0),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    'Beautician',
+                                    style: TextStyle(
+                                      fontSize: 18.0,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                  SizedBox(height: 8),
+                                  Text(
+                                    'Our team of beauticians consists of skilled professionals who understand precisely how to care for your skin. They are ready to provide a relaxing and comprehensive experience, from facials and skin treatments to soothing body therapies. Our beauticians are dedicated to making you feel refreshed, relaxed, and confident, with treatments personalized to meet your skin’s unique needs.',
+                                    style: TextStyle(fontSize: 14.0),
+                                    textAlign: TextAlign.center,
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Card(
+                        margin: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 8.0),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Container(
+                              decoration: const BoxDecoration(
+                                shape: BoxShape.circle,
+                                gradient: LinearGradient(
+                                  colors: [Color(0xFFFF7E5F), Color(0xFFFEB47B)],
+                                  begin: Alignment.centerLeft,
+                                  end: Alignment.centerRight,
+                                ),
+                              ),
+                              padding: const EdgeInsets.all(4.0),
+                              child: const CircleAvatar(
+                                radius: 40,
+                                backgroundImage: AssetImage('assets/images/staff.png'),
+                              ),
+                            ),
+                            const Padding(
+                              padding: EdgeInsets.all(16.0),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    'Staff',
+                                    style: TextStyle(
+                                      fontSize: 18.0,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                  SizedBox(height: 8),
+                                  Text(
+                                    'At Natural Beauty Center, our dedicated team of highly trained professionals prioritizes your comfort and satisfaction. Passionate about beauty and wellness, each staff member is committed to providing exceptional service tailored to your unique needs. We strive to create a rejuvenating and memorable experience that supports your journey to radiant beauty.',
+                                    style: TextStyle(fontSize: 14.0),
+                                    textAlign: TextAlign.center,
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
                   const SizedBox(height: 16),
                 ],
               ),
