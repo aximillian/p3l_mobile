@@ -77,7 +77,7 @@ class _TreatmentScreenState extends State<TreatmentScreen> {
           }
         },
       ),
-      bottomNavigationBar: BottomNavBar(),
+      bottomNavigationBar: const BottomNavBar(),
     );
   }
 }
