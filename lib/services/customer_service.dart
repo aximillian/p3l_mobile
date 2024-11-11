@@ -15,11 +15,29 @@ class CustomerService {
     }
   }
 
+  // Fetch the logged-in customer's data
+  static Future<Map<String, dynamic>> fetchLoggedInCustomer() async {
+    final token = await StorageHelper.getToken();
+    final response = await http.get(
+      Uri.parse('$apiUrl/me'),
+      headers: {'Authorization': 'Bearer $token'},
+    );
+    if (response.statusCode == 200) {
+      return json.decode(response.body)['data'];
+    } else {
+      throw Exception('Failed to load customer data');
+    }
+  }
+
   // Update an existing customer
   static Future<Map<String, dynamic>> updateCustomer(String id, Map<String, dynamic> customerData) async {
+    final token = await StorageHelper.getToken();
     final response = await http.put(
       Uri.parse('$apiUrl/$id'),
-      headers: {'Content-Type': 'application/json'},
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer $token',
+      },
       body: json.encode(customerData),
     );
     if (response.statusCode == 200) {

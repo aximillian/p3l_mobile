@@ -20,9 +20,9 @@ class ProductCard extends StatelessWidget {
     return Card(
       elevation: 10.0,
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(10.0),
+        borderRadius: BorderRadius.circular(15.0),
       ),
-
+      shadowColor: Colors.black54,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -30,7 +30,7 @@ class ProductCard extends StatelessWidget {
           // Bagian Gambar Produk
           ClipRRect(
             borderRadius:
-                const BorderRadius.vertical(top: Radius.circular(10.0)),
+                const BorderRadius.vertical(top: Radius.circular(15.0)),
             child: Image.network(
               imageUrl,
               fit: BoxFit.cover,
@@ -44,7 +44,7 @@ class ProductCard extends StatelessWidget {
 
           // Bagian deskripsi produk
           Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.all(12.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -52,7 +52,7 @@ class ProductCard extends StatelessWidget {
                 Text(
                   productName,
                   style: const TextStyle(
-                    fontSize: 18.0,
+                    fontSize: 16.0,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -62,16 +62,16 @@ class ProductCard extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    // Stok Produk
+                    // Harga Produk
                     Text(
                       price,
                       style: const TextStyle(
-                        fontSize: 14.0,
+                        fontSize: 12.0,
                         color: AppTheme.blackColor,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    // Harga Produk
+                    // Stok Produk
                     Text(
                       'Stok: $stock',
                       style: const TextStyle(
