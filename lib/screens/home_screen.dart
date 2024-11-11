@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:p3l_mobile/entity/product%20.dart';
 import 'package:p3l_mobile/entity/treatment.dart';
 import 'package:p3l_mobile/screens/profile_screen.dart';
+import 'package:p3l_mobile/screens/product_screen.dart';
 import '../widgets/bottom_navbar.dart';
 import '../widgets/custom_search_field.dart';
 import '../services/treatment_service.dart';
 import '../services/product_service.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -20,6 +22,7 @@ class _HomeScreenState extends State<HomeScreen> {
   final ProductService _productService = ProductService();
   List<Treatment> _searchTreatmentResults = [];
   List<Product> _searchProductResults = [];
+  int _currentIndex = 0;
 
   void _onSearchChanged(String query) async {
     if (query.isNotEmpty) {
@@ -76,6 +79,77 @@ class _HomeScreenState extends State<HomeScreen> {
               controller: _searchController,
               hintText: 'Search treatments and products...',
               onChanged: _onSearchChanged,
+            ),
+          ),
+
+          CarouselSlider(
+            options: CarouselOptions(
+              height: 200.0,
+              autoPlay: true,
+              enlargeCenterPage: true,
+              onPageChanged: (index, reason) {
+                setState(() {
+                  _currentIndex = index;
+                });
+              },
+            ),
+            items: imgList.map((imgPath) {
+              return Builder(
+                builder: (BuildContext context) {
+                  return Container(
+                    width: MediaQuery.of(context).size.width,
+                    margin: const EdgeInsets.symmetric(horizontal: 5.0),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10.0),
+                      image: DecorationImage(
+                        image: AssetImage(imgPath),
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  );
+                },
+              );
+            }).toList(),
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: imgList.map((url) {
+              int index = imgList.indexOf(url);
+              return Container(
+                width: 8.0,
+                height: 8.0,
+                margin: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 2.0),
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: _currentIndex == index
+                      ? const Color.fromRGBO(0, 0, 0, 0.9)
+                      : const Color.fromRGBO(0, 0, 0, 0.4),
+                ),
+              );
+            }).toList(),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                const Text(
+                  'Recommendations for you',
+                  style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
+                ),
+                GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => const ProductScreen()),
+                    );
+                  },
+                  child: const Text(
+                    'See all >',
+                    style: TextStyle(fontSize: 16.0, color: Colors.blue),
+                  ),
+                ),
+              ],
             ),
           ),
           Expanded(

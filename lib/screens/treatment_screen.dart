@@ -35,12 +35,16 @@ class _TreatmentScreenState extends State<TreatmentScreen> {
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(child: CircularProgressIndicator());
+          
           } else if (snapshot.hasError) {
             return Center(child: Text('Error: ${snapshot.error}'));
+         
           } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
             return const Center(child: Text('No treatments available'));
+         
           } else {
             final treatments = snapshot.data!;
+           
             return Padding(
               padding: const EdgeInsets.all(8.0),
               child: ListView.builder(
@@ -52,10 +56,11 @@ class _TreatmentScreenState extends State<TreatmentScreen> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => TreatmentDetailScreen(treatment: treatment),
+                          builder: (context) => TreatmentDetailScreen(treatment: treatment , otherTreatments: treatments),
                         ),
                       );
                     },
+                    
                     child: Padding(
                       padding: const EdgeInsets.symmetric(vertical: 8.0),
                       child: TreatmentCard(
@@ -72,7 +77,7 @@ class _TreatmentScreenState extends State<TreatmentScreen> {
           }
         },
       ),
-      bottomNavigationBar: const BottomNavBar(),
+      bottomNavigationBar: BottomNavBar(),
     );
   }
 }

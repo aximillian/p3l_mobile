@@ -67,6 +67,7 @@ class _ProductScreenState extends State<ProductScreen> {
                         ),
                       );
                     },
+                    
                     child: ProductCard(
                       imageUrl: 'http://10.0.2.2:8000/images/produk/${product.gambarProduk}',
                       productName: product.namaProduk,
