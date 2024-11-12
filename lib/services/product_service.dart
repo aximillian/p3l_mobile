@@ -34,7 +34,7 @@ class ProductService {
       final data = json.decode(response.body)['data'];
       return (data as List).map((json) => Product.fromJson(json)).toList();
     } else {
-      throw Exception('No products found with that name');
+      return [];
     }
   }
 }

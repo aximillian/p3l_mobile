@@ -103,15 +103,17 @@ class _HomeScreenState extends State<HomeScreen> {
       'assets/images/beauty.jpg',
       'assets/images/gambar_perawatan.jpg',
       'assets/images/gambar_produk.jpg',
+      'assets/images/gambar_perawatan copy.jpg',
     ];
 
     return Scaffold(
       appBar: AppBar(
         title: const Text('Home'),
+        backgroundColor: AppTheme.pinkColor,
         actions: [
           IconButton(
             icon: const CircleAvatar(
-              backgroundImage: AssetImage('assets/images/default_profile.jpeg'),
+              backgroundImage: AssetImage('assets/images/avatar.jpg'),
             ),
             onPressed: () {
               Navigator.push(
@@ -162,7 +164,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         items: <String>['Treatment', 'Product'].map((String value) {
                           return DropdownMenuItem<String>(
                             value: value,
-                            child: Text(value, style: TextStyle(color: Colors.black)),
+                            child: Text(value, style: const TextStyle(color: Colors.black)),
                           );
                         }).toList(),
                         onChanged: (String? newValue) {
@@ -170,7 +172,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             _searchType = newValue!;
                           });
                         },
-                        style: TextStyle(color: Colors.black),
+                        style: const TextStyle(color: Colors.black),
                         dropdownColor: Colors.white,
                         iconEnabledColor: Colors.black,
                         underline: Container(),
@@ -181,7 +183,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               if (_isSearching) 
                 const CircularProgressIndicator()
-              else if (_searchTreatmentResults.isNotEmpty || _searchProductResults.isNotEmpty) ...[
+              else if (_searchController.text.isNotEmpty && (_searchTreatmentResults.isNotEmpty || _searchProductResults.isNotEmpty)) ...[
                 if (_searchTreatmentResults.isNotEmpty) ...[
                   const Padding(
                     padding: EdgeInsets.symmetric(vertical: 8.0),
@@ -269,6 +271,26 @@ class _HomeScreenState extends State<HomeScreen> {
                     },
                   ),
                 ],
+              ] else if (_searchController.text.isNotEmpty) ...[
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 20.0),
+                  child: Column(
+                    children: [
+                      Icon(Icons.search_off, size: 80, color: Colors.grey),
+                      const SizedBox(height: 10),
+                      Text(
+                        _searchType == 'Treatment'
+                          ? 'No treatments found with that name'
+                          : 'No products found with that name',
+                        style: const TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.grey,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
               ] else ...[
                 const CarouselSliderWidget(),
                 RecommendedTreatmentsWidget(treatmentsFuture: _treatmentsFuture),

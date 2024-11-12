@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:p3l_mobile/theme/app_theme.dart';
 import '../entity/product%20.dart';
 import '../screens/product_detail_screen.dart';
 import '../screens/product_screen.dart';
@@ -31,7 +32,7 @@ class RecommendedProductsWidget extends StatelessWidget {
                 },
                 child: const Text(
                   'See all >',
-                  style: TextStyle(fontSize: 16.0, color: Colors.blue),
+                  style: TextStyle(fontSize: 14.0, color: AppTheme.blackColor),
                 ),
               ),
             ],

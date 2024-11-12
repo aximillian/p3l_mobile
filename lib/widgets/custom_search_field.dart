@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
 
-import 'package:p3l_mobile/theme/app_theme.dart';
-
 class CustomSearchField extends StatelessWidget {
   final TextEditingController controller;
   final String hintText;

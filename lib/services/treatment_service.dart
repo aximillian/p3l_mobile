@@ -34,7 +34,7 @@ class TreatmentService {
       final data = json.decode(response.body)['data'];
       return (data as List).map((json) => Treatment.fromJson(json)).toList();
     } else {
-      throw Exception('No treatments found with that name');
+      return [];
     }
   }
 }

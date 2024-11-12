@@ -23,7 +23,7 @@ Future<Map<String, dynamic>> login(String username, String password) async {
 
   if (response.statusCode == 200) {
     final responseBody = json.decode(response.body);
-    if (responseBody['role'] == 'pegawai') {
+    if (responseBody['user']['jabatan_pegawai'] != null) {
       final jabatanPegawai = responseBody['user']['jabatan_pegawai'];
       if (jabatanPegawai != 'Kepala Klinik' && jabatanPegawai != 'Beautician') {
         return {
@@ -31,9 +31,11 @@ Future<Map<String, dynamic>> login(String username, String password) async {
           'message': 'Pegawai tidak memiliki akses login.',
         };
       }
+      await StorageHelper.saveUserRole('pegawai');
+    } else {
+      await StorageHelper.saveUserRole('customer');
     }
 
-    
     await StorageHelper.saveToken(responseBody['access_token']);
     await StorageHelper.saveUserData(responseBody['user']);
 
