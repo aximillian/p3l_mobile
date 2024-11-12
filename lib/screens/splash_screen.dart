@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:p3l_mobile/screens/home_screen.dart';
 import 'package:p3l_mobile/theme/app_theme.dart';
-import 'login_screen.dart';
 import 'package:p3l_mobile/widgets/custom_loading_spinner.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -22,7 +22,7 @@ class _SplashScreenState extends State<SplashScreen> {
     Timer(const Duration(seconds: 3), () {
       Navigator.of(context).pushReplacement(
         MaterialPageRoute(
-          builder: (context) => const LoginScreen(),
+          builder: (context) => const HomeScreen(),
         ),
       );
     });

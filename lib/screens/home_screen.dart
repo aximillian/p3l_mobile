@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:p3l_mobile/entity/product%20.dart';
 import 'package:p3l_mobile/entity/treatment.dart';
+import 'package:p3l_mobile/helper/shared_preferences.dart';
+import 'package:p3l_mobile/screens/login_screen.dart';
 import 'package:p3l_mobile/screens/profile_screen.dart';
 import 'package:p3l_mobile/theme/app_theme.dart';
 import '../widgets/bottom_navbar.dart';
@@ -110,16 +112,25 @@ class _HomeScreenState extends State<HomeScreen> {
       appBar: AppBar(
         title: const Text('Home'),
         backgroundColor: AppTheme.pinkColor,
+        automaticallyImplyLeading: false,
         actions: [
           IconButton(
             icon: const CircleAvatar(
               backgroundImage: AssetImage('assets/images/avatar.jpg'),
             ),
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const ProfileScreen()),
-              );
+            onPressed: () async {
+              final token = await StorageHelper.getToken();
+              if (token == null) {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const LoginScreen()),
+                );
+              } else {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const ProfileScreen()),
+                );
+              }
             },
           ),
         ],

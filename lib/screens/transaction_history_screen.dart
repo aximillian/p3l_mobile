@@ -11,7 +11,7 @@ class TransactionHistoryScreen extends StatefulWidget {
   final String userId;
   final String token;
 
-  const TransactionHistoryScreen({Key? key, required this.userId, required this.token}) : super(key: key);
+  const TransactionHistoryScreen({super.key, required this.userId, required this.token});
 
   @override
   _TransactionHistoryScreenState createState() => _TransactionHistoryScreenState();

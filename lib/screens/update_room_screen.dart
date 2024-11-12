@@ -45,11 +45,11 @@ class _UpdateRoomScreenState extends State<UpdateRoomScreen> {
               const SizedBox(height: 20),
               ElevatedButton(
                 onPressed: _updateRoom,
-                child: Text('Update Room'),
                 style: ElevatedButton.styleFrom(
                   backgroundColor: AppTheme.pinkColor, 
                   textStyle: GoogleFonts.lato(fontWeight: FontWeight.bold),
                 ),
+                child: const Text('Update Room'),
               ),
             ],
           ),

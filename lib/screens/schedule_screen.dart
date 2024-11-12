@@ -23,7 +23,9 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
         title: const Text('Schedule'),
         backgroundColor: AppTheme.pinkColor,
         elevation: 0,
+        automaticallyImplyLeading: false,
       ),
+      
       body: Container(
         decoration: const BoxDecoration(
           gradient: LinearGradient(

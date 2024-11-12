@@ -351,6 +351,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
     await StorageHelper.removeToken();
     await StorageHelper.removeUserData();
     await StorageHelper.removeUserRole();
-    Navigator.of(context).pushReplacementNamed('/login'); // Adjust the route name as needed
+    Navigator.of(context).pushReplacementNamed('/home');
   }
 }

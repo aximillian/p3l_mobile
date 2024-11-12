@@ -29,6 +29,7 @@ class _ProductScreenState extends State<ProductScreen> {
       appBar: AppBar(
         title: const Text('Products'),
         backgroundColor: AppTheme.pinkColor,
+        automaticallyImplyLeading: false,
       ),
       body: Container(
         decoration: const BoxDecoration(
