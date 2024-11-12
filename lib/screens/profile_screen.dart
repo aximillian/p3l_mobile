@@ -259,15 +259,16 @@ class _ProfileScreenState extends State<ProfileScreen> {
             ),
           ),
         ),
-        ProfileCard(
-          title: 'Update Room',
-          value: '',
-          leading: const Icon(Icons.room, color: AppTheme.blackColor),
-          onTap: () {
-            // Implement the navigation to the update room screen
-            Navigator.of(context).push(MaterialPageRoute(builder: (context) => UpdateRoomScreen()));
-          },
-        ),
+        if (userRole == 'pegawai' && userData['jabatan_pegawai'] == 'Beautician') ...[
+          ProfileCard(
+            title: 'Update Room',
+            value: '',
+            leading: const Icon(Icons.room, color: AppTheme.blackColor),
+            onTap: () {
+              Navigator.of(context).push(MaterialPageRoute(builder: (context) => UpdateRoomScreen()));
+            },
+          ),
+        ],
         ProfileCard(
           title: 'Sign Out',
           value: '',
