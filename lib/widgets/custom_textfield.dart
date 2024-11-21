@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class CustomTextField extends StatefulWidget {
   final TextEditingController controller;
@@ -33,6 +34,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
       controller: widget.controller,
       obscureText: _obscureText,
       keyboardType: widget.keyboardType,
+      style: GoogleFonts.lato(),
       decoration: InputDecoration(
         labelText: widget.labelText,
         filled: true,

@@ -3,6 +3,7 @@ import 'package:p3l_mobile/widgets/bottom_navbar.dart';
 import 'package:p3l_mobile/theme/app_theme.dart';
 import 'package:p3l_mobile/data/schedule_data.dart';
 import 'package:p3l_mobile/widgets/schedule_card.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class ScheduleScreen extends StatefulWidget {
   const ScheduleScreen({super.key});
@@ -20,7 +21,10 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Schedule'),
+        title: Text(
+          'Schedule',
+          style: GoogleFonts.lato(),
+        ),
         backgroundColor: AppTheme.pinkColor,
         elevation: 0,
         automaticallyImplyLeading: false,
@@ -38,11 +42,11 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Padding(
-                padding: EdgeInsets.all(16.0),
+              Padding(
+                padding: const EdgeInsets.all(16.0),
                 child: Text(
                   'Doctor Schedule',
-                  style: TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold, color: AppTheme.blackColor),
+                  style: GoogleFonts.lato(fontSize: 24.0, fontWeight: FontWeight.bold, color: AppTheme.blackColor),
                 ),
               ),
               Padding(
@@ -88,11 +92,11 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
                 ),
               ),
               _showDropdown ? _buildDoctorSchedule(_selectedDay) : _buildDoctorSchedule(''),
-              const Padding(
-                padding: EdgeInsets.all(16.0),
+              Padding(
+                padding: const EdgeInsets.all(16.0),
                 child: Text(
                   'Beautician Schedule',
-                  style: TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold, color: AppTheme.blackColor),
+                  style: GoogleFonts.lato(fontSize: 24.0, fontWeight: FontWeight.bold, color: AppTheme.blackColor),
                 ),
               ),
               _showDropdown ? _buildBeauticianSchedule(_selectedDay) : _buildBeauticianSchedule(''),

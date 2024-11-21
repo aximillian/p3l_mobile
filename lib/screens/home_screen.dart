@@ -18,6 +18,7 @@ import '../widgets/schedule_widgets.dart';
 import 'package:p3l_mobile/screens/treatment_detail_screen.dart';
 import 'package:p3l_mobile/screens/product_detail_screen.dart';
 import '../widgets/custom_search_field.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -110,7 +111,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Home'),
+        title: Text('Home', style: GoogleFonts.lato()),
         backgroundColor: AppTheme.pinkColor,
         automaticallyImplyLeading: false,
         actions: [
@@ -196,10 +197,10 @@ class _HomeScreenState extends State<HomeScreen> {
                 const CircularProgressIndicator()
               else if (_searchController.text.isNotEmpty && (_searchTreatmentResults.isNotEmpty || _searchProductResults.isNotEmpty)) ...[
                 if (_searchTreatmentResults.isNotEmpty) ...[
-                  const Padding(
-                    padding: EdgeInsets.symmetric(vertical: 8.0),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 8.0),
                     child: Text('Treatment Results:',
-                      style: TextStyle(
+                      style: GoogleFonts.lato(
                         fontSize: 18, fontWeight: FontWeight.bold
                       )
                     ),
@@ -240,10 +241,10 @@ class _HomeScreenState extends State<HomeScreen> {
                 ],
                 const SizedBox(height: 16),
                 if (_searchProductResults.isNotEmpty) ...[
-                  const Padding(
-                    padding: EdgeInsets.symmetric(vertical: 8.0),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 8.0),
                     child: Text('Product Results:',
-                      style: TextStyle(
+                      style: GoogleFonts.lato(
                         fontSize: 18, fontWeight: FontWeight.bold
                       )
                     ),
@@ -287,13 +288,13 @@ class _HomeScreenState extends State<HomeScreen> {
                   padding: const EdgeInsets.symmetric(vertical: 20.0),
                   child: Column(
                     children: [
-                      Icon(Icons.search_off, size: 80, color: Colors.grey),
+                      const Icon(Icons.search_off, size: 80, color: Colors.grey),
                       const SizedBox(height: 10),
                       Text(
                         _searchType == 'Treatment'
                           ? 'No treatments found with that name'
                           : 'No products found with that name',
-                        style: const TextStyle(
+                        style: GoogleFonts.lato(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
                           color: Colors.grey,
@@ -306,18 +307,18 @@ class _HomeScreenState extends State<HomeScreen> {
                 const CarouselSliderWidget(),
                 RecommendedTreatmentsWidget(treatmentsFuture: _treatmentsFuture),
                 RecommendedProductsWidget(productsFuture: _productsFuture),
-                const Text(
+                Text(
                   'Meet Our Glowist',
-                  style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
+                  style: GoogleFonts.lato(fontSize: 20.0, fontWeight: FontWeight.bold),
                 ),
                 const SizedBox(height: 16),
                 const MeetOurGlowistWidget(),
                 AboutUsWidget(),
                 const SizedBox(height: 16),
                 
-                const Text(
+                Text(
                   'Schedules',
-                  style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
+                  style: GoogleFonts.lato(fontSize: 20.0, fontWeight: FontWeight.bold),
                 ),
                 const SizedBox(height: 16),
                 const SchedulesWidget(),

@@ -1,5 +1,5 @@
-
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart'; // Add this import
 import 'package:p3l_mobile/theme/app_theme.dart';
 import '../entity/product%20.dart';
 import '../screens/product_detail_screen.dart';
@@ -19,9 +19,9 @@ class RecommendedProductsWidget extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const Text(
+              Text(
                 'Recommended Products',
-                style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
+                style: GoogleFonts.lato(fontSize: 20.0, fontWeight: FontWeight.bold), // Apply GoogleFonts.lato
               ),
               GestureDetector(
                 onTap: () {
@@ -30,9 +30,9 @@ class RecommendedProductsWidget extends StatelessWidget {
                     MaterialPageRoute(builder: (context) => const ProductScreen()),
                   );
                 },
-                child: const Text(
+                child: Text(
                   'See all >',
-                  style: TextStyle(fontSize: 14.0, color: AppTheme.blackColor),
+                  style: GoogleFonts.lato(fontSize: 14.0, color: AppTheme.blackColor), // Apply GoogleFonts.lato
                 ),
               ),
             ],
@@ -103,11 +103,14 @@ class RecommendedProductsWidget extends StatelessWidget {
                                   children: [
                                     Text(
                                       product.namaProduk,
-                                      style: const TextStyle(
+                                      style: GoogleFonts.lato(
                                         fontWeight: FontWeight.bold,
-                                      ),
+                                      ), // Apply GoogleFonts.lato
                                     ),
-                                    Text('Rp ${product.hargaProduk}'),
+                                    Text(
+                                      'Rp ${product.hargaProduk}',
+                                      style: GoogleFonts.lato(), // Apply GoogleFonts.lato
+                                    ),
                                   ],
                                 ),
                               ),

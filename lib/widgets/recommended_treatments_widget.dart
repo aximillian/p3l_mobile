@@ -1,5 +1,5 @@
-
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart'; // Add this import
 import 'package:p3l_mobile/theme/app_theme.dart';
 import '../entity/treatment.dart';
 import '../screens/treatment_detail_screen.dart';
@@ -19,9 +19,9 @@ class RecommendedTreatmentsWidget extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const Text(
+              Text(
                 'Recommended Treatments',
-                style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
+                style: GoogleFonts.lato(fontSize: 20.0, fontWeight: FontWeight.bold),
               ),
               GestureDetector(
                 onTap: () {
@@ -30,9 +30,9 @@ class RecommendedTreatmentsWidget extends StatelessWidget {
                     MaterialPageRoute(builder: (context) => const TreatmentScreen()),
                   );
                 },
-                child: const Text(
+                child: Text(
                   'See all >',
-                  style: TextStyle(fontSize: 14.0, color: AppTheme.blackColor),
+                  style: GoogleFonts.lato(fontSize: 14.0, color: AppTheme.blackColor),
                 ),
               ),
             ],
@@ -103,11 +103,14 @@ class RecommendedTreatmentsWidget extends StatelessWidget {
                                   children: [
                                     Text(
                                       treatment.namaPerawatan,
-                                      style: const TextStyle(
+                                      style: GoogleFonts.lato(
                                         fontWeight: FontWeight.bold,
                                       ),
                                     ),
-                                    Text('Rp ${treatment.hargaPerawatan}'),
+                                    Text(
+                                      'Rp ${treatment.hargaPerawatan}',
+                                      style: GoogleFonts.lato(),
+                                    ),
                                   ],
                                 ),
                               ),

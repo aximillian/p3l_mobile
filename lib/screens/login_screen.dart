@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:p3l_mobile/theme/app_theme.dart';
+import 'package:google_fonts/google_fonts.dart';
 import '../services/auth_service.dart';
 import '../widgets/custom_textfield.dart';
 import '../widgets/custom_button.dart';
@@ -90,33 +91,37 @@ class _LoginScreenState extends State<LoginScreen> {
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  const Row(
+                  Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      SizedBox(width: 10),
+                      const SizedBox(width: 10),
                       Text(
                         'Let\'s Get Start Exploring',
-                        style: TextStyle(
-                          fontSize: 28,
-                          fontWeight: FontWeight.bold,
-                          color: AppTheme.pinkColor,
-                          shadows: [
-                            Shadow(
-                              blurRadius: 10.0,
-                              color: Colors.black45,
-                              offset: Offset(2, 2),
-                            ),
-                          ],
+                        style: GoogleFonts.lato(
+                          textStyle: const TextStyle(
+                            fontSize: 28,
+                            fontWeight: FontWeight.bold,
+                            color: AppTheme.pinkColor,
+                            shadows: [
+                              Shadow(
+                                blurRadius: 10.0,
+                                color: Colors.black45,
+                                offset: Offset(2, 2),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     ],
                   ),
                   const SizedBox(height: 5),
-                  const Text(
+                  Text(
                     'Sign in with your account',
-                    style: TextStyle(
-                      fontSize: 12,
-                      color: AppTheme.blackColor,
+                    style: GoogleFonts.lato(
+                      textStyle: const TextStyle(
+                        fontSize: 12,
+                        color: AppTheme.blackColor,
+                      ),
                     ),
                   ),
                   const SizedBox(height: 35),

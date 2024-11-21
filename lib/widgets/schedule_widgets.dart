@@ -1,5 +1,5 @@
-
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import '../data/schedule_data.dart';
 
 class SchedulesWidget extends StatelessWidget {
@@ -34,7 +34,7 @@ class SchedulesWidget extends StatelessWidget {
           children: [
             Text(
               title,
-              style: const TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
+              style: GoogleFonts.lato(fontSize: 18.0, fontWeight: FontWeight.bold),
             ),
             const Divider(),
             Expanded(child: scheduleContent),
@@ -55,7 +55,7 @@ class SchedulesWidget extends StatelessWidget {
             children: [
               Text(
                 entry.key,
-                style: const TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
+                style: GoogleFonts.lato(fontSize: 16.0, fontWeight: FontWeight.bold),
               ),
               const Divider(),
               ...entry.value.entries.map((shiftEntry) {
@@ -66,13 +66,13 @@ class SchedulesWidget extends StatelessWidget {
                       Expanded(
                         child: Text(
                           shiftEntry.key,
-                          style: const TextStyle(fontSize: 14.0, fontWeight: FontWeight.w500),
+                          style: GoogleFonts.lato(fontSize: 14.0, fontWeight: FontWeight.w500),
                         ),
                       ),
                       Expanded(
                         child: Text(
                           shiftEntry.value.join(', '),
-                          style: const TextStyle(fontSize: 14.0),
+                          style: GoogleFonts.lato(fontSize: 14.0),
                           textAlign: TextAlign.right,
                         ),
                       ),
@@ -98,7 +98,7 @@ class SchedulesWidget extends StatelessWidget {
             children: [
               Text(
                 entry.key,
-                style: const TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
+                style: GoogleFonts.lato(fontSize: 16.0, fontWeight: FontWeight.bold),
               ),
               const Divider(),
               ...entry.value.entries.map((shiftEntry) {
@@ -109,13 +109,13 @@ class SchedulesWidget extends StatelessWidget {
                       Expanded(
                         child: Text(
                           shiftEntry.key,
-                          style: const TextStyle(fontSize: 14.0, fontWeight: FontWeight.w500),
+                          style: GoogleFonts.lato(fontSize: 14.0, fontWeight: FontWeight.w500),
                         ),
                       ),
                       Expanded(
                         child: Text(
                           shiftEntry.value.join(', '),
-                          style: const TextStyle(fontSize: 14.0),
+                          style: GoogleFonts.lato(fontSize: 14.0),
                           textAlign: TextAlign.right,
                         ),
                       ),

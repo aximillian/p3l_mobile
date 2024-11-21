@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:p3l_mobile/theme/app_theme.dart';
+import 'package:google_fonts/google_fonts.dart'; // Import GoogleFonts
 
 // Widget untuk ElevatedButton yang dapat digunakan di berbagai tempat
 class CustomButton extends StatelessWidget {
@@ -34,7 +35,7 @@ class CustomButton extends StatelessWidget {
         ),
         child: Text(
           text,
-          style: TextStyle(
+          style: GoogleFonts.lato( // Apply GoogleFonts.lato
             color: textColor, // Set text color
             fontSize: textSize, // Set text size
           ),

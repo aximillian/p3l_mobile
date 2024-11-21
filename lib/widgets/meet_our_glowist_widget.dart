@@ -1,6 +1,6 @@
-
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class MeetOurGlowistWidget extends StatelessWidget {
   const MeetOurGlowistWidget({super.key});
@@ -38,23 +38,23 @@ class MeetOurGlowistWidget extends StatelessWidget {
                   backgroundImage: AssetImage('assets/images/dokter.png'),
                 ),
               ),
-              const Padding(
-                padding: EdgeInsets.all(16.0),
+              Padding(
+                padding: const EdgeInsets.all(16.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Text(
                       'Doctor',
-                      style: TextStyle(
+                      style: GoogleFonts.lato(
                         fontSize: 18.0,
                         fontWeight: FontWeight.bold,
                         color: Colors.blueAccent,
                       ),
                     ),
-                    SizedBox(height: 8),
+                    const SizedBox(height: 8),
                     Text(
                       'At Natural Beauty Center, our doctors are dedicated professionals committed to providing each patient with the highest level of care tailored to individual skin types and needs. With deep knowledge and extensive experience in skin health, our doctors use the latest technology and safe methods to help you achieve healthy, radiant skin. Your safety and comfort are our top priorities!',
-                      style: TextStyle(fontSize: 14.0, color: Colors.black87),
+                      style: GoogleFonts.lato(fontSize: 14.0, color: Colors.black87),
                       textAlign: TextAlign.center,
                     ),
                   ],
@@ -87,23 +87,23 @@ class MeetOurGlowistWidget extends StatelessWidget {
                   backgroundImage: AssetImage('assets/images/beautician.png'),
                 ),
               ),
-              const Padding(
-                padding: EdgeInsets.all(16.0),
+              Padding(
+                padding: const EdgeInsets.all(16.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Text(
                       'Beautician',
-                      style: TextStyle(
+                      style: GoogleFonts.lato(
                         fontSize: 18.0,
                         fontWeight: FontWeight.bold,
                         color: Colors.blueAccent,
                       ),
                     ),
-                    SizedBox(height: 8),
+                    const SizedBox(height: 8),
                     Text(
                       'Our team of beauticians consists of skilled professionals who understand precisely how to care for your skin. They are ready to provide a relaxing and comprehensive experience, from facials and skin treatments to soothing body therapies. Our beauticians are dedicated to making you feel refreshed, relaxed, and confident, with treatments personalized to meet your skin’s unique needs.',
-                      style: TextStyle(fontSize: 14.0, color: Colors.black87),
+                      style: GoogleFonts.lato(fontSize: 14.0, color: Colors.black87),
                       textAlign: TextAlign.center,
                     ),
                   ],
@@ -136,23 +136,23 @@ class MeetOurGlowistWidget extends StatelessWidget {
                   backgroundImage: AssetImage('assets/images/staff.png'),
                 ),
               ),
-              const Padding(
-                padding: EdgeInsets.all(16.0),
+              Padding(
+                padding: const EdgeInsets.all(16.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Text(
                       'Staff',
-                      style: TextStyle(
+                      style: GoogleFonts.lato(
                         fontSize: 18.0,
                         fontWeight: FontWeight.bold,
                         color: Colors.blueAccent,
                       ),
                     ),
-                    SizedBox(height: 8),
+                    const SizedBox(height: 8),
                     Text(
                       'At Natural Beauty Center, our dedicated team of highly trained professionals prioritizes your comfort and satisfaction. Passionate about beauty and wellness, each staff member is committed to providing exceptional service tailored to your unique needs. We strive to create a rejuvenating and memorable experience that supports your journey to radiant beauty.',
-                      style: TextStyle(fontSize: 14.0, color: Colors.black87),
+                      style: GoogleFonts.lato(fontSize: 14.0, color: Colors.black87),
                       textAlign: TextAlign.center,
                     ),
                   ],

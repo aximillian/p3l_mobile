@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:p3l_mobile/screens/home_screen.dart';
 import 'package:p3l_mobile/theme/app_theme.dart';
 import 'package:p3l_mobile/widgets/custom_loading_spinner.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -64,15 +65,14 @@ class _SplashScreenState extends State<SplashScreen> {
               const SizedBox(height: 40),
 
               // Title 
-              const Text(
+              Text(
                 'Your Journey to\nTimeless Beauty\nBegins Here',
                 textAlign: TextAlign.center,
-                style: TextStyle(
+                style: GoogleFonts.lato(
                   color: AppTheme.pinkColor,
-                  fontFamily: 'Georgiab',
                   fontSize: 30,
                   fontWeight: FontWeight.bold,
-                  shadows: [
+                  shadows: const [
                     Shadow(
                       blurRadius: 10.0,
                       color: Colors.black45,

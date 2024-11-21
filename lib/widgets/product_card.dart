@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:p3l_mobile/theme/app_theme.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class ProductCard extends StatelessWidget {
   final String imageUrl;
@@ -51,9 +52,11 @@ class ProductCard extends StatelessWidget {
                 // Nama Produk
                 Text(
                   productName,
-                  style: const TextStyle(
-                    fontSize: 16.0,
-                    fontWeight: FontWeight.bold,
+                  style: GoogleFonts.lato(
+                    textStyle: const TextStyle(
+                      fontSize: 16.0,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
                 const SizedBox(height: 8.0), 
@@ -65,19 +68,23 @@ class ProductCard extends StatelessWidget {
                     // Harga Produk
                     Text(
                       price,
-                      style: const TextStyle(
-                        fontSize: 12.0,
-                        color: AppTheme.blackColor,
-                        fontWeight: FontWeight.bold,
+                      style: GoogleFonts.lato(
+                        textStyle: const TextStyle(
+                          fontSize: 12.0,
+                          color: AppTheme.blackColor,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ),
                     // Stok Produk
                     Text(
                       'Stok: $stock',
-                      style: const TextStyle(
-                        fontSize: 12.0,
-                        color: Colors.grey,
-                        fontWeight: FontWeight.bold,
+                      style: GoogleFonts.lato(
+                        textStyle: const TextStyle(
+                          fontSize: 12.0,
+                          color: Colors.grey,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ),
                   ],

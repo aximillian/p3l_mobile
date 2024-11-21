@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:p3l_mobile/entity/treatment.dart';
 import 'package:p3l_mobile/theme/app_theme.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class TreatmentDetailScreen extends StatelessWidget {
   final Treatment treatment;
@@ -13,7 +14,10 @@ class TreatmentDetailScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(treatment.namaPerawatan),
+        title: Text(
+          treatment.namaPerawatan,
+          style: GoogleFonts.lato(),
+        ),
         backgroundColor: AppTheme.pinkColor,
       ),
 
@@ -43,34 +47,34 @@ class TreatmentDetailScreen extends StatelessWidget {
                       const SizedBox(height: 16.0),
                       Text(
                         treatment.namaPerawatan,
-                        style: const TextStyle(fontSize: 28.0, fontWeight: FontWeight.bold),
+                        style: GoogleFonts.lato(fontSize: 28.0, fontWeight: FontWeight.bold),
                       ),
                       const SizedBox(height: 8.0),
                       Text(
                         'Rp ${treatment.hargaPerawatan}',
-                        style: const TextStyle(fontSize: 24.0, color: Colors.green),
+                        style: GoogleFonts.lato(fontSize: 24.0, color: Colors.green),
                       ),
                       const SizedBox(height: 16.0),
-                      const Text(
+                      Text(
                         'Requirements:',
-                        style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
+                        style: GoogleFonts.lato(fontSize: 20.0, fontWeight: FontWeight.bold),
                       ),
                       const SizedBox(height: 8.0),
                       Text(
                         treatment.syaratPerawatan,
-                        style: const TextStyle(fontSize: 16.0),
+                        style: GoogleFonts.lato(fontSize: 16.0),
                       ),
                       const SizedBox(height: 16.0),
                       const Divider(color: Colors.grey),
                       const SizedBox(height: 16.0),
-                      const Text(
+                      Text(
                         'Description:',
-                        style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
+                        style: GoogleFonts.lato(fontSize: 20.0, fontWeight: FontWeight.bold),
                       ),
                       const SizedBox(height: 8.0),
                       Text(
                         treatment.keteranganPerawatan,
-                        style: const TextStyle(fontSize: 16.0),
+                        style: GoogleFonts.lato(fontSize: 16.0),
                       ),
                     ],
                   ),
@@ -79,9 +83,9 @@ class TreatmentDetailScreen extends StatelessWidget {
               const SizedBox(height: 16.0),
               const Divider(color: Colors.grey),
               const SizedBox(height: 16.0),
-              const Text(
+              Text(
                 'Other Treatments:',
-                style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
+                style: GoogleFonts.lato(fontSize: 20.0, fontWeight: FontWeight.bold),
               ),
               const SizedBox(height: 8.0),
               SizedBox(
@@ -124,11 +128,11 @@ class TreatmentDetailScreen extends StatelessWidget {
                               const SizedBox(height: 8.0),
                               Text(
                                 otherTreatment.namaPerawatan,
-                                style: const TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
+                                style: GoogleFonts.lato(fontSize: 16.0, fontWeight: FontWeight.bold),
                               ),
                               Text(
                                 'Rp ${otherTreatment.hargaPerawatan}',
-                                style: const TextStyle(fontSize: 14.0, color: Colors.green),
+                                style: GoogleFonts.lato(fontSize: 14.0, color: Colors.green),
                               ),
                             ],
                           ),

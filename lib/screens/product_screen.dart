@@ -5,6 +5,7 @@ import 'package:p3l_mobile/widgets/bottom_navbar.dart';
 import '../services/product_service.dart';
 import '../widgets/product_card.dart';
 import 'product_detail_screen.dart';
+import 'package:intl/intl.dart';
 
 class ProductScreen extends StatefulWidget {
   const ProductScreen({super.key});
@@ -53,6 +54,7 @@ class _ProductScreenState extends State<ProductScreen> {
 
             } else {
               final products = snapshot.data!;
+              final formatter = NumberFormat.currency(locale: 'id_ID', symbol: 'Rp ', decimalDigits: 0);
               
               return Padding(
                 padding: const EdgeInsets.all(8.0),
@@ -85,7 +87,7 @@ class _ProductScreenState extends State<ProductScreen> {
                           child: ProductCard(
                             imageUrl: 'http://10.0.2.2:8000/images/produk/${product.gambarProduk}',
                             productName: product.namaProduk,
-                            price: 'Rp ${product.hargaProduk}',
+                            price: '${formatter.format(product.hargaProduk)},00',
                             stock: product.stockProduk.toString(),
                           ),
                         ),

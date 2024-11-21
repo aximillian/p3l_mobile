@@ -1,5 +1,5 @@
-
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart'; // Add this import
 import '../theme/app_theme.dart';
 
 class AboutUsWidget extends StatelessWidget {
@@ -10,9 +10,9 @@ class AboutUsWidget extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text(
+          Text(
             'About Us',
-            style: TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold, color: AppTheme.blackColor),
+            style: GoogleFonts.lato(fontSize: 24.0, fontWeight: FontWeight.bold, color: AppTheme.blackColor),
           ),
           const SizedBox(height: 8),
           Container(
@@ -29,18 +29,18 @@ class AboutUsWidget extends StatelessWidget {
               ],
             ),
             padding: const EdgeInsets.all(16.0),
-            child: const Column(
+            child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
                   'Welcome to Natural Beauty Center, the beauty clinic that offers the finest treatments for your skin and body!',
-                  style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
+                  style: GoogleFonts.lato(fontSize: 16.0, fontWeight: FontWeight.bold),
                   textAlign: TextAlign.justify,
                 ),
-                SizedBox(height: 8),
+                const SizedBox(height: 8),
                 Text(
                   'With experienced professionals and state-of-the-art technology, we are here to help you achieve a radiant, natural beauty. At Natural Beauty Center, we believe that every individual\'s uniqueness deserves care and enhancement. Enjoy a personalized and comprehensive experience, from facials and skincare treatments to relaxing body therapies. Trust us with your beauty needs, and feel the real transformation with stunning results!',
-                  style: TextStyle(fontSize: 14.0),
+                  style: GoogleFonts.lato(fontSize: 14.0),
                   textAlign: TextAlign.justify,
                 ),
               ],

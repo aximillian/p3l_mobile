@@ -1,6 +1,6 @@
-
 import 'package:flutter/material.dart';
 import 'package:p3l_mobile/theme/app_theme.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class ScheduleCard extends StatelessWidget {
   final String day;
@@ -24,7 +24,7 @@ class ScheduleCard extends StatelessWidget {
           children: [
             Text(
               day,
-              style: const TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, color: AppTheme.blackColor),
+              style: GoogleFonts.lato(fontSize: 20.0, fontWeight: FontWeight.bold, color: AppTheme.blackColor),
             ),
             const Divider(color: AppTheme.blackColor),
             ...daySchedule.entries.map((entry) {
@@ -35,13 +35,13 @@ class ScheduleCard extends StatelessWidget {
                     Expanded(
                       child: Text(
                         entry.key,
-                        style: const TextStyle(fontSize: 16.0, fontWeight: FontWeight.w500, color: AppTheme.blackColor),
+                        style: GoogleFonts.lato(fontSize: 16.0, fontWeight: FontWeight.w500, color: AppTheme.blackColor),
                       ),
                     ),
                     Expanded(
                       child: Text(
                         entry.value.join(', '),
-                        style: const TextStyle(fontSize: 16.0, color: AppTheme.blackColor),
+                        style: GoogleFonts.lato(fontSize: 16.0, color: AppTheme.blackColor),
                         textAlign: TextAlign.right,
                       ),
                     ),

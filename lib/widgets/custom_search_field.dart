@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
+import 'package:google_fonts/google_fonts.dart';
 
 class CustomSearchField extends StatelessWidget {
   final TextEditingController controller;
@@ -42,7 +43,7 @@ class CustomSearchField extends StatelessWidget {
         fillColor: Colors.white,
         contentPadding: const EdgeInsets.symmetric(vertical: 0, horizontal: 16),
       ),
-      style: const TextStyle(fontSize: 16.0),
+      style: GoogleFonts.lato(fontSize: 16.0),
     );
   }
 }
