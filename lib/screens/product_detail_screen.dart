@@ -2,11 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:p3l_mobile/entity/product%20.dart';
 import 'package:p3l_mobile/theme/app_theme.dart';
 import 'package:google_fonts/google_fonts.dart';
-
 import 'package:intl/intl.dart';
 
 class ProductDetailScreen extends StatelessWidget {
-  final NumberFormat formatter = NumberFormat('#,###');
+  final formatter = NumberFormat.currency(locale: 'id_ID', symbol: 'Rp ', decimalDigits: 0);
   final Product product;
   final List<Product> otherProducts;
 
@@ -51,7 +50,7 @@ class ProductDetailScreen extends StatelessWidget {
                       ),
                       const SizedBox(height: 8.0),
                       Text(
-                        'Rp ${formatter.format(product.hargaProduk)},00',
+                        '${formatter.format(product.hargaProduk)},00',
                         style: GoogleFonts.lato(fontSize: 24.0, color: Colors.green),
                       ),
                       const SizedBox(height: 8.0),
@@ -126,7 +125,7 @@ class ProductDetailScreen extends StatelessWidget {
                                 style: GoogleFonts.lato(fontSize: 16.0, fontWeight: FontWeight.bold),
                               ),
                               Text(
-                                'Rp ${formatter.format(otherProduct.hargaProduk)},00',
+                                '${formatter.format(otherProduct.hargaProduk)},00',
                                 style: GoogleFonts.lato(fontSize: 14.0, color: Colors.green),
                               ),
                             ],

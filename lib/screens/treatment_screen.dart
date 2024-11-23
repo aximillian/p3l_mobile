@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:p3l_mobile/services/treatment_service.dart';
 import 'package:p3l_mobile/theme/app_theme.dart';
 import 'package:p3l_mobile/widgets/treatment_card.dart';
@@ -44,16 +45,15 @@ class _TreatmentScreenState extends State<TreatmentScreen> {
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
               return const Center(child: CircularProgressIndicator());
-            
             } else if (snapshot.hasError) {
               return Center(child: Text('Error: ${snapshot.error}'));
-           
             } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
               return const Center(child: Text('No treatments available'));
-           
             } else {
               final treatments = snapshot.data!;
-             
+              final formatter = NumberFormat.currency(
+                  locale: 'id_ID', symbol: 'Rp ', decimalDigits: 0);
+
               return Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: ListView.builder(
@@ -65,17 +65,20 @@ class _TreatmentScreenState extends State<TreatmentScreen> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => TreatmentDetailScreen(treatment: treatment , otherTreatments: treatments),
+                            builder: (context) => TreatmentDetailScreen(
+                                treatment: treatment,
+                                otherTreatments: treatments),
                           ),
                         );
                       },
-                      
                       child: Padding(
                         padding: const EdgeInsets.symmetric(vertical: 8.0),
                         child: TreatmentCard(
-                          imageUrl: 'http://10.0.2.2:8000/images/perawatan/${treatment.gambarPerawatan}',
+                          imageUrl:
+                              'http://10.0.2.2:8000/images/perawatan/${treatment.gambarPerawatan}',
                           treatmentName: treatment.namaPerawatan,
-                          price: 'Rp ${treatment.hargaPerawatan}',
+                          price:
+                              '${formatter.format(treatment.hargaPerawatan)},00',
                           requirements: treatment.syaratPerawatan,
                         ),
                       ),

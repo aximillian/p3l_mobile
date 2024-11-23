@@ -2,10 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:p3l_mobile/theme/app_theme.dart';
 import 'package:p3l_mobile/helper/shared_preferences.dart';
-import 'package:http/http.dart' as http;
-import 'dart:convert';
+import 'package:p3l_mobile/services/customer_service.dart';
+import 'package:p3l_mobile/services/pegawai_service.dart';
 
 class ChangePasswordScreen extends StatefulWidget {
+  final Map<String, dynamic> userData;
+  final String userRole;
+
+  ChangePasswordScreen({required this.userData, required this.userRole});
+
   @override
   _ChangePasswordScreenState createState() => _ChangePasswordScreenState();
 }
@@ -18,37 +23,19 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
 
   Future<void> _changePassword() async {
     if (_formKey.currentState!.validate()) {
-      final currentPassword = _currentPasswordController.text;
       final newPassword = _newPasswordController.text;
+      final userId = widget.userData['id_customer'] ?? widget.userData['id'];
 
-      final token = await StorageHelper.getToken();
-      if (token == null) {
-        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('No token available')));
-        return;
-      }
-
-      final response = await http.post(
-        Uri.parse('http://10.0.2.2:8000/api/mobile/changePassword'), // Ensure this URL is correct
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': 'Bearer $token',
-        },
-        body: json.encode({
-          'current_password': currentPassword,
-          'new_password': newPassword,
-        }),
-      );
-
-      if (response.statusCode == 200) {
+      try {
+        if (widget.userRole == 'customer') {
+          await CustomerService.updateCustomer(userId, {...widget.userData, 'password': newPassword});
+        } else if (widget.userRole == 'pegawai') {
+          await PegawaiService.updatePegawai(userId, {...widget.userData, 'password': newPassword});
+        }
         ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Password changed successfully')));
         Navigator.of(context).pop();
-      } else {
-        try {
-          final responseBody = json.decode(response.body);
-          ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(responseBody['message'])));
-        } catch (e) {
-          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('An error occurred. Please try again.')));
-        }
+      } catch (e) {
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Error: $e')));
       }
     }
   }

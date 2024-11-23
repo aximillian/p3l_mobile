@@ -78,7 +78,7 @@ class ProductCard extends StatelessWidget {
                     ),
                     // Stok Produk
                     Text(
-                      'Stok: $stock',
+                      'Stock: $stock',
                       style: GoogleFonts.lato(
                         textStyle: const TextStyle(
                           fontSize: 12.0,

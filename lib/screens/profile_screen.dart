@@ -192,7 +192,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
           value: '',
           leading: const Icon(Icons.lock, color: AppTheme.blackColor),
           onTap: () {
-            Navigator.of(context).push(MaterialPageRoute(builder: (context) => ChangePasswordScreen()));
+            Navigator.of(context).push(MaterialPageRoute(
+              builder: (context) => ChangePasswordScreen(userData: userData, userRole: userRole),
+            ));
           },
         ),
         ProfileCard(
@@ -269,6 +271,16 @@ class _ProfileScreenState extends State<ProfileScreen> {
             },
           ),
         ],
+        ProfileCard(
+          title: 'Change Password',
+          value: '',
+          leading: const Icon(Icons.lock, color: AppTheme.blackColor),
+          onTap: () {
+            Navigator.of(context).push(MaterialPageRoute(
+              builder: (context) => ChangePasswordScreen(userData: userData, userRole: userRole),
+            ));
+          },
+        ),
         ProfileCard(
           title: 'Sign Out',
           value: '',

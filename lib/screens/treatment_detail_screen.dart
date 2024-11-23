@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:p3l_mobile/entity/treatment.dart';
 import 'package:p3l_mobile/theme/app_theme.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
 
 class TreatmentDetailScreen extends StatelessWidget {
   final Treatment treatment;
   final List<Treatment> otherTreatments;
+  final formatter = NumberFormat.currency(locale: 'id_ID', symbol: 'Rp ', decimalDigits: 0);
 
-  const TreatmentDetailScreen({super.key, required this.treatment, required this.otherTreatments});
+  TreatmentDetailScreen({super.key, required this.treatment, required this.otherTreatments});
 
   @override
   Widget build(BuildContext context) {
@@ -51,7 +53,7 @@ class TreatmentDetailScreen extends StatelessWidget {
                       ),
                       const SizedBox(height: 8.0),
                       Text(
-                        'Rp ${treatment.hargaPerawatan}',
+                        '${formatter.format(treatment.hargaPerawatan)},00',
                         style: GoogleFonts.lato(fontSize: 24.0, color: Colors.green),
                       ),
                       const SizedBox(height: 16.0),
@@ -131,7 +133,7 @@ class TreatmentDetailScreen extends StatelessWidget {
                                 style: GoogleFonts.lato(fontSize: 16.0, fontWeight: FontWeight.bold),
                               ),
                               Text(
-                                'Rp ${otherTreatment.hargaPerawatan}',
+                                '${formatter.format(otherTreatment.hargaPerawatan)},00',
                                 style: GoogleFonts.lato(fontSize: 14.0, color: Colors.green),
                               ),
                             ],

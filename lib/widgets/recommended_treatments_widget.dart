@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart'; // Add this import
 import 'package:p3l_mobile/theme/app_theme.dart';
+import 'package:intl/intl.dart'; // Add this import
 import '../entity/treatment.dart';
 import '../screens/treatment_detail_screen.dart';
 import '../screens/treatment_screen.dart';
 
 class RecommendedTreatmentsWidget extends StatelessWidget {
   final Future<List<Treatment>> treatmentsFuture;
+  final formatter = NumberFormat.currency(
+      locale: 'id_ID', symbol: 'Rp ', decimalDigits: 0); // Add this line
 
-  const RecommendedTreatmentsWidget({super.key, required this.treatmentsFuture});
+  RecommendedTreatmentsWidget({super.key, required this.treatmentsFuture});
 
   @override
   Widget build(BuildContext context) {
@@ -21,18 +24,21 @@ class RecommendedTreatmentsWidget extends StatelessWidget {
             children: [
               Text(
                 'Recommended Treatments',
-                style: GoogleFonts.lato(fontSize: 20.0, fontWeight: FontWeight.bold),
+                style: GoogleFonts.lato(
+                    fontSize: 20.0, fontWeight: FontWeight.bold),
               ),
               GestureDetector(
                 onTap: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => const TreatmentScreen()),
+                    MaterialPageRoute(
+                        builder: (context) => const TreatmentScreen()),
                   );
                 },
                 child: Text(
                   'See all >',
-                  style: GoogleFonts.lato(fontSize: 14.0, color: AppTheme.blackColor),
+                  style: GoogleFonts.lato(
+                      fontSize: 14.0, color: AppTheme.blackColor),
                 ),
               ),
             ],
@@ -62,7 +68,9 @@ class RecommendedTreatmentsWidget extends StatelessWidget {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => TreatmentDetailScreen(treatment: treatment, otherTreatments: treatments),
+                            builder: (context) => TreatmentDetailScreen(
+                                treatment: treatment,
+                                otherTreatments: treatments),
                           ),
                         );
                       },
@@ -87,12 +95,15 @@ class RecommendedTreatmentsWidget extends StatelessWidget {
                                   height: 100.0,
                                   width: 160.0,
                                   fit: BoxFit.cover,
-                                  loadingBuilder: (context, child, loadingProgress) {
+                                  loadingBuilder:
+                                      (context, child, loadingProgress) {
                                     if (loadingProgress == null) return child;
-                                    return const Center(child: CircularProgressIndicator());
+                                    return const Center(
+                                        child: CircularProgressIndicator());
                                   },
                                   errorBuilder: (context, error, stackTrace) {
-                                    return const Center(child: Icon(Icons.error));
+                                    return const Center(
+                                        child: Icon(Icons.error));
                                   },
                                 ),
                               ),
@@ -108,7 +119,10 @@ class RecommendedTreatmentsWidget extends StatelessWidget {
                                       ),
                                     ),
                                     Text(
-                                      'Rp ${treatment.hargaPerawatan}',
+                                      '${
+                                        formatter
+                                            .format(treatment.hargaPerawatan)
+                                      },00',
                                       style: GoogleFonts.lato(),
                                     ),
                                   ],

@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart'; // Add this import
 import 'package:p3l_mobile/theme/app_theme.dart';
+import 'package:intl/intl.dart'; // Add this import
 import '../entity/product%20.dart';
 import '../screens/product_detail_screen.dart';
 import '../screens/product_screen.dart';
 
 class RecommendedProductsWidget extends StatelessWidget {
   final Future<List<Product>> productsFuture;
+  final formatter = NumberFormat.currency(locale: 'id_ID', symbol: 'Rp ', decimalDigits: 0); // Add this line
 
-  const RecommendedProductsWidget({super.key, required this.productsFuture});
+  RecommendedProductsWidget({super.key, required this.productsFuture});
 
   @override
   Widget build(BuildContext context) {
@@ -108,8 +110,8 @@ class RecommendedProductsWidget extends StatelessWidget {
                                       ), // Apply GoogleFonts.lato
                                     ),
                                     Text(
-                                      'Rp ${product.hargaProduk}',
-                                      style: GoogleFonts.lato(), // Apply GoogleFonts.lato
+                                      '${formatter.format(product.hargaProduk)},00', 
+                                      style: GoogleFonts.lato(), 
                                     ),
                                   ],
                                 ),
