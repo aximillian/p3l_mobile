@@ -24,6 +24,7 @@ class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
   @override
+  // ignore: library_private_types_in_public_api
   _HomeScreenState createState() => _HomeScreenState();
 }
 
@@ -102,12 +103,6 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final List<String> imgList = [
-      'assets/images/beauty.jpg',
-      'assets/images/gambar_perawatan.jpg',
-      'assets/images/gambar_produk.jpg',
-      'assets/images/gambar_perawatan copy.jpg',
-    ];
 
     return Scaffold(
       appBar: AppBar(

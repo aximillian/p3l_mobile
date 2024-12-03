@@ -18,6 +18,7 @@ class _CarouselSliderWidgetState extends State<CarouselSliderWidget> {
       'assets/images/beauty.jpg',
       'assets/images/gambar_perawatan.jpg',
       'assets/images/gambar_produk.jpg',
+      'assets/images/treatment.jpg',
     ];
 
     return Column(

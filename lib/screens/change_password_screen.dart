@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:p3l_mobile/theme/app_theme.dart';
-import 'package:p3l_mobile/helper/shared_preferences.dart';
 import 'package:p3l_mobile/services/customer_service.dart';
 import 'package:p3l_mobile/services/pegawai_service.dart';
 
@@ -24,8 +23,11 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
   Future<void> _changePassword() async {
     if (_formKey.currentState!.validate()) {
       final newPassword = _newPasswordController.text;
-      final userId = widget.userData['id_customer'] ?? widget.userData['id'];
-
+      // final userId = widget.userData['id_customer'] ?? widget.userData['id'];
+      final userId = widget.userRole == 'pegawai'
+          ? widget.userData['id_pegawai'].toString()
+          : (widget.userData['id_customer'] ?? widget.userData['id'])
+              .toString();
       try {
         if (widget.userRole == 'customer') {
           await CustomerService.updateCustomer(userId, {...widget.userData, 'password': newPassword});
