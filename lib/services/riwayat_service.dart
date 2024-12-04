@@ -8,9 +8,6 @@ class TransactionService {
 
   // Method to fetch the transaction history by customer ID
   Future<List<Riwayat>> fetchTransactionHistory(String idCustomer, String token) async {
-    // Debugging: print the URL and token
-    print('Fetching transaction history from: $baseUrl/transaksi/$idCustomer');
-    print('Authorization header: Bearer $token');
     
     final response = await http.get(
       Uri.parse('$baseUrl/transaksi/$idCustomer'),  // Correct base URL

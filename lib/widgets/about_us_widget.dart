@@ -3,6 +3,8 @@ import 'package:google_fonts/google_fonts.dart'; // Add this import
 import '../theme/app_theme.dart';
 
 class AboutUsWidget extends StatelessWidget {
+  const AboutUsWidget({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Padding(

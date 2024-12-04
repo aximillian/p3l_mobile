@@ -267,7 +267,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             value: '',
             leading: const Icon(Icons.room, color: AppTheme.blackColor),
             onTap: () {
-              Navigator.of(context).push(MaterialPageRoute(builder: (context) => UpdateRoomScreen()));
+              Navigator.of(context).push(MaterialPageRoute(builder: (context) => const UpdateRoomScreen()));
             },
           ),
         ],

@@ -8,7 +8,7 @@ class ChangePasswordScreen extends StatefulWidget {
   final Map<String, dynamic> userData;
   final String userRole;
 
-  ChangePasswordScreen({required this.userData, required this.userRole});
+  const ChangePasswordScreen({super.key, required this.userData, required this.userRole});
 
   @override
   _ChangePasswordScreenState createState() => _ChangePasswordScreenState();
@@ -134,7 +134,6 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                 Center(
                   child: ElevatedButton(
                     onPressed: _changePassword,
-                    child: const Text('Change Password'),
                     style: ElevatedButton.styleFrom(
                       backgroundColor: AppTheme.pinkColor,
                       padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 15),
@@ -143,6 +142,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                         borderRadius: BorderRadius.circular(10.0),
                       ),
                     ),
+                    child: const Text('Change Password'),
                   ),
                 ),
               ],

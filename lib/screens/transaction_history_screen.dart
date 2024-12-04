@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
@@ -109,7 +108,7 @@ class _TransactionHistoryScreenState extends State<TransactionHistoryScreen> {
             Text('Tanggal: $formattedDate'),
             Text('Jenis Transaksi: ${transaction.jenisTransaksi}'),
             Text('Status: ${transaction.statusTransaksi}'),
-            Text('Keluhan: ${transaction.keluhan ?? 'N/A'}'),
+            Text('Keluhan: ${transaction.keluhan.isNotEmpty ? transaction.keluhan : 'N/A'}'),
           ],
         ),
         trailing: Text(formattedNominal),

@@ -308,7 +308,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 const SizedBox(height: 16),
                 const MeetOurGlowistWidget(),
-                AboutUsWidget(),
+                const AboutUsWidget(),
                 const SizedBox(height: 16),
                 
                 Text(

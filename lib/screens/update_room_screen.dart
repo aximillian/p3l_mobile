@@ -5,12 +5,13 @@ import 'package:p3l_mobile/entity/ruangan.dart';
 import 'package:p3l_mobile/services/ruangan_service.dart';
 
 class UpdateRoomScreen extends StatefulWidget {
+  const UpdateRoomScreen({super.key});
+
   @override
   _UpdateRoomScreenState createState() => _UpdateRoomScreenState();
 }
 
 class _UpdateRoomScreenState extends State<UpdateRoomScreen> {
-  final _formKey = GlobalKey<FormState>();
   List<Ruangan> _rooms = [];
   bool _isLoading = false;
   final _ruanganService = RuanganService();
@@ -73,7 +74,7 @@ class _UpdateRoomScreenState extends State<UpdateRoomScreen> {
           children: [
             // Loading indicator while fetching rooms
             if (_isLoading)
-              CircularProgressIndicator()
+              const CircularProgressIndicator()
             else
               Expanded(
                 child: ListView.builder(
