@@ -3,7 +3,7 @@ import 'package:http/http.dart' as http;
 import '../helper/shared_preferences.dart';
 
 class PegawaiService {
-  static const String apiUrl = 'http://10.0.2.2:8000/api/pegawai';
+  static const String apiUrl = 'http://atmabueatyapi.site/api/pegawai';
 
   // Fetch a single pegawai by ID
   static Future<Map<String, dynamic>> fetchPegawaiById(String id) async {

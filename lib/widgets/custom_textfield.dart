@@ -43,7 +43,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
           borderRadius: BorderRadius.circular(20.0),
           borderSide: BorderSide.none,
         ),
-        suffixIcon: widget.obscureText
+        suffixIcon: widget.obscureText && widget.controller.text.isNotEmpty
             ? IconButton(
                 icon: Icon(
                   _obscureText ? Icons.visibility_off : Icons.visibility,
@@ -56,6 +56,9 @@ class _CustomTextFieldState extends State<CustomTextField> {
               )
             : null,
       ),
+      onChanged: (text) {
+        setState(() {});
+      },
     );
   }
 }

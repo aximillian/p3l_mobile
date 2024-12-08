@@ -39,11 +39,27 @@ class _HomeScreenState extends State<HomeScreen> {
   Timer? _debounce;
   final TextEditingController _searchController = TextEditingController();
   String _searchType = 'Treatment'; // Default search type
+  String? _username;
+  String? _userRole;
+  String? _jabatanPegawai;
 
   @override
   void initState() {
     super.initState();
     _fetchData();
+    _loadUserData();
+  }
+
+  Future<void> _loadUserData() async {
+    final userData = await StorageHelper.getUserData();
+    final userRole = await StorageHelper.getUserRole();
+    setState(() {
+      _username = userData?['username'];
+      _userRole = userRole;
+      if (userRole == 'pegawai') {
+        _jabatanPegawai = userData?['jabatan_pegawai'];
+      }
+    });
   }
 
   @override
@@ -106,9 +122,30 @@ class _HomeScreenState extends State<HomeScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Home', style: GoogleFonts.lato()),
+        title: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              _username ?? 'Home',
+              style: GoogleFonts.lato(
+                fontSize: 20, 
+                fontWeight: FontWeight.bold, 
+              ),
+            ),
+            if (_userRole != null)
+              Text(
+                _userRole == 'pegawai' ? _jabatanPegawai ?? '' : _userRole!,
+                style: GoogleFonts.lato(
+                  fontSize: 16, 
+                  fontWeight: FontWeight.normal, 
+                ),
+              ),
+          ],
+        ),
         backgroundColor: AppTheme.pinkColor,
         automaticallyImplyLeading: false,
+        elevation: 10, // Add elevation for shadow effect
+        shadowColor: Colors.black.withOpacity(0.5), // Shadow color
         actions: [
           IconButton(
             icon: const CircleAvatar(
@@ -143,6 +180,27 @@ class _HomeScreenState extends State<HomeScreen> {
         child: SingleChildScrollView(
           child: Column(
             children: [
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Column(
+                  children: [
+                    Text(
+                      'Welcome back,',
+                      style: GoogleFonts.lato(
+                        fontSize: 16, // Normal font size
+                        fontWeight: FontWeight.normal, // Normal weight
+                      ),
+                    ),
+                    Text(
+                      'Your beauty skin is our priority',
+                      style: GoogleFonts.lato(
+                        fontSize: 20, // Larger font size
+                        fontWeight: FontWeight.bold, // Bold text
+                      ),
+                    ),
+                  ],
+                ),
+              ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Row(

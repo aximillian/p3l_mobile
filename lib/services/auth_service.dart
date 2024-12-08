@@ -3,7 +3,7 @@ import 'package:http/http.dart' as http;
 import '../helper/shared_preferences.dart';
 
 Future<Map<String, dynamic>> login(String username, String password) async {
-  const String apiUrl = 'http://10.0.2.2:8000/api/mobile/loginMo'; // URL endpoint API login
+  const String apiUrl = 'http://atmabueatyapi.site/api/mobile/loginMo'; // URL endpoint API login
 
   final Map<String, String> loginData = {
     'username': username,
