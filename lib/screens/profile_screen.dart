@@ -100,8 +100,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
           style: GoogleFonts.lato(fontWeight: FontWeight.bold),
         ),
         backgroundColor: AppTheme.pinkColor,
+        elevation: 10, // Add elevation for shadow effect
+        shadowColor: Colors.black.withOpacity(0.5), // Shadow color
       ),
       body: Container(
+        width: double.infinity,
+        height: double.infinity,
         decoration: const BoxDecoration(
           gradient: LinearGradient(
             colors: [AppTheme.pinkColor, AppTheme.whiteColor],

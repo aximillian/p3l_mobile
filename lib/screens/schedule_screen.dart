@@ -26,7 +26,8 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
           style: GoogleFonts.lato(),
         ),
         backgroundColor: AppTheme.pinkColor,
-        elevation: 0,
+        elevation: 10, 
+        shadowColor: Colors.black.withOpacity(0.5), 
         automaticallyImplyLeading: false,
       ),
       

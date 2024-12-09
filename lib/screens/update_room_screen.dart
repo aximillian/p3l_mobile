@@ -67,51 +67,63 @@ class _UpdateRoomScreenState extends State<UpdateRoomScreen> {
           style: GoogleFonts.lato(fontWeight: FontWeight.bold),
         ),
         backgroundColor: AppTheme.pinkColor,
+        elevation: 10,
+        shadowColor: Colors.black.withOpacity(0.5),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          children: [
-            // Loading indicator while fetching rooms
-            if (_isLoading)
-              const CircularProgressIndicator()
-            else
-              Expanded(
-                child: ListView.builder(
-                  itemCount: _rooms.length,
-                  itemBuilder: (context, index) {
-                    final room = _rooms[index];
-                    return Card(
-                      margin: const EdgeInsets.symmetric(
-                          vertical: 8.0, horizontal: 16.0),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(15.0),
-                      ),
-                      elevation: 5,
-                      child: ListTile(
-                        contentPadding: const EdgeInsets.all(16.0),
-                        title: Text('Room No: ${room.nomorRuangan}'),
-                        subtitle: Text('Current Status: ${room.status}'),
-                        trailing: DropdownButton<String>(
-                          value: room.status,
-                          items: ['available', 'booked'].map((String status) {
-                            return DropdownMenuItem<String>(
-                              value: status,
-                              child: Text(status),
-                            );
-                          }).toList(),
-                          onChanged: (String? newStatus) {
-                            if (newStatus != null) {
-                              _updateRoomStatus(room, newStatus);
-                            }
-                          },
+      
+      body: Container(
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            colors: [AppTheme.pinkColor, AppTheme.whiteColor],
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+          ),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            children: [
+              // Loading indicator while fetching rooms
+              if (_isLoading)
+                const CircularProgressIndicator()
+              else
+                Expanded(
+                  child: ListView.builder(
+                    itemCount: _rooms.length,
+                    itemBuilder: (context, index) {
+                      final room = _rooms[index];
+                      return Card(
+                        margin: const EdgeInsets.symmetric(
+                            vertical: 8.0, horizontal: 16.0),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(15.0),
                         ),
-                      ),
-                    );
-                  },
+                        elevation: 5,
+                        child: ListTile(
+                          contentPadding: const EdgeInsets.all(16.0),
+                          title: Text('Room No: ${room.nomorRuangan}'),
+                          subtitle: Text('Current Status: ${room.status}'),
+                          trailing: DropdownButton<String>(
+                            value: room.status,
+                            items: ['available', 'booked'].map((String status) {
+                              return DropdownMenuItem<String>(
+                                value: status,
+                                child: Text(status),
+                              );
+                            }).toList(),
+                            onChanged: (String? newStatus) {
+                              if (newStatus != null) {
+                                _updateRoomStatus(room, newStatus);
+                              }
+                            },
+                          ),
+                        ),
+                      );
+                    },
+                  ),
                 ),
-              ),
-          ],
+            ],
+          ),
         ),
       ),
     );

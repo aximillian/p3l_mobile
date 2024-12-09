@@ -117,24 +117,85 @@ class _HomeScreenState extends State<HomeScreen> {
     });
   }
 
+  String _getGreeting() {
+    final hour = DateTime.now().hour;
+    if (hour < 12) {
+      return 'Good morning, ';
+    } else if (hour < 17) {
+      return 'Good afternoon, ';
+    } else if (hour < 20) {
+      return 'Good evening, ';
+    } else {
+      return 'Good night, ';
+    }
+  }
+
+  IconData _getGreetingIcon() {
+    final hour = DateTime.now().hour;
+    if (hour < 12) {
+      return Icons.wb_sunny;
+    } else if (hour < 17) {
+      return Icons.wb_cloudy;
+    } else if (hour < 20) {
+      return Icons.nights_stay;
+    } else {
+      return Icons.bedtime;
+    }
+  }
+
+  Color _getGreetingIconColor() {
+    final hour = DateTime.now().hour;
+    if (hour < 12) {
+      return Colors.yellow;
+    } else if (hour < 17) {
+      return Colors.orange;
+    } else if (hour < 20) {
+      return Colors.blue;
+    } else {
+      return Colors.indigo;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       appBar: AppBar(
         title: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              _username ?? 'Home',
-              style: GoogleFonts.lato(
-                fontSize: 20, 
-                fontWeight: FontWeight.bold, 
+            if (_username != null)
+              Row(
+                children: [
+                  Icon(_getGreetingIcon(), size: 25, color: _getGreetingIconColor()),
+                  const SizedBox(width: 5),
+                  Text(
+                    '${_getGreeting()}$_username',
+                    style: GoogleFonts.lato(
+                      fontSize: 20, 
+                      fontWeight: FontWeight.bold, 
+                    ),
+                  ),
+                ],
+              )
+            else
+              Row(
+                children: [
+                  Text(
+                    'Welcome',
+                    style: GoogleFonts.lato(
+                      fontSize: 20, 
+                      fontWeight: FontWeight.bold, 
+                    ),
+                  ),
+                  const SizedBox(width: 5),
+                  const Icon(Icons.waving_hand, size: 25, color: Color.fromARGB(255, 200, 120, 0)),
+                ],
               ),
-            ),
             if (_userRole != null)
               Text(
-                _userRole == 'pegawai' ? _jabatanPegawai ?? '' : _userRole!,
+                _userRole == 'pegawai' 
+                  ? (_jabatanPegawai == 'Kepala Klinik' ? 'Head of Clinic' : 'Professional Beautician')
+                  : 'Valued Customer',
                 style: GoogleFonts.lato(
                   fontSize: 16, 
                   fontWeight: FontWeight.normal, 
@@ -144,8 +205,8 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         backgroundColor: AppTheme.pinkColor,
         automaticallyImplyLeading: false,
-        elevation: 10, // Add elevation for shadow effect
-        shadowColor: Colors.black.withOpacity(0.5), // Shadow color
+        elevation: 10, 
+        shadowColor: Colors.black.withOpacity(0.5), 
         actions: [
           IconButton(
             icon: const CircleAvatar(
@@ -184,13 +245,13 @@ class _HomeScreenState extends State<HomeScreen> {
                 padding: const EdgeInsets.all(8.0),
                 child: Column(
                   children: [
-                    Text(
-                      'Welcome back,',
-                      style: GoogleFonts.lato(
-                        fontSize: 16, // Normal font size
-                        fontWeight: FontWeight.normal, // Normal weight
-                      ),
-                    ),
+                    // Text(
+                    //   'Welcome back,',
+                    //   style: GoogleFonts.lato(
+                    //     fontSize: 16, // Normal font size
+                    //     fontWeight: FontWeight.normal, // Normal weight
+                    //   ),
+                    // ),
                     Text(
                       'Your beauty skin is our priority',
                       style: GoogleFonts.lato(

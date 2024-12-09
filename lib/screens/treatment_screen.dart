@@ -31,6 +31,8 @@ class _TreatmentScreenState extends State<TreatmentScreen> {
         title: const Text('Treatments'),
         backgroundColor: AppTheme.pinkColor,
         automaticallyImplyLeading: false,
+        elevation: 10,
+        shadowColor: Colors.black.withOpacity(0.5),
       ),
       body: Container(
         decoration: const BoxDecoration(

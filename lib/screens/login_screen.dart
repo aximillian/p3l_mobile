@@ -91,6 +91,14 @@ class _LoginScreenState extends State<LoginScreen> {
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(20.0),
+                    child: Image.asset(
+                      'assets/images/logo.jpg',
+                      height: 100,
+                      width: 100,
+                    ),
+                  ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -119,12 +127,12 @@ class _LoginScreenState extends State<LoginScreen> {
                     'Sign in with your account',
                     style: GoogleFonts.lato(
                       textStyle: const TextStyle(
-                        fontSize: 12,
+                        fontSize: 14,
                         color: AppTheme.blackColor,
                       ),
                     ),
                   ),
-                  const SizedBox(height: 35),
+                  const SizedBox(height: 25),
                   CustomTextField(
                     controller: _usernameController,
                     labelText: 'Username',

@@ -62,6 +62,8 @@ class _TransactionHistoryScreenState extends State<TransactionHistoryScreen> {
           style: GoogleFonts.lato(fontWeight: FontWeight.bold),
         ),
         backgroundColor: AppTheme.pinkColor,
+        elevation: 10,
+        shadowColor: Colors.black.withOpacity(0.5),
       ),
       body: Container(
         decoration: const BoxDecoration(

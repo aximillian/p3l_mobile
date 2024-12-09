@@ -52,38 +52,46 @@ class _SplashScreenState extends State<SplashScreen> {
           ),
 
           // Content
-          Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
+          Center(
+            child: Padding(
+              padding: const EdgeInsets.only(top: 150.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
 
-              // Logo
-              Image.asset(
-                'assets/images/image.png',
-                width: 150,
-                height: 150,
-              ),
-              const SizedBox(height: 40),
-
-              // Title 
-              Text(
-                'Your Journey to\nTimeless Beauty\nBegins Here',
-                textAlign: TextAlign.center,
-                style: GoogleFonts.lato(
-                  color: AppTheme.pinkColor,
-                  fontSize: 30,
-                  fontWeight: FontWeight.bold,
-                  shadows: const [
-                    Shadow(
-                      blurRadius: 10.0,
-                      color: Colors.black45,
-                      offset: Offset(2, 2),
+                  // Logo
+                  ClipOval(
+                    child: Image.asset(
+                      'assets/images/logo.jpg',
+                      width: 150,
+                      height: 150,
+                      fit: BoxFit.cover,
                     ),
-                  ],
-                ),
+                  ),
+                  const SizedBox(height: 20),
+
+                  // Title 
+                  Text(
+                    'Your Journey to\nTimeless Beauty\nBegins Here',
+                    textAlign: TextAlign.center,
+                    style: GoogleFonts.lato(
+                      color: AppTheme.pinkColor,
+                      fontSize: 30,
+                      fontWeight: FontWeight.bold,
+                      shadows: const [
+                        Shadow(
+                          blurRadius: 10.0,
+                          color: Colors.black45,
+                          offset: Offset(2, 2),
+                        ),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(height: 80),
+                  
+                ],
               ),
-              const SizedBox(height: 80),
-              
-            ],
+            ),
           ),
 
           // Loading spinner
