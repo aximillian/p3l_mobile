@@ -31,15 +31,15 @@ class _UpdateRoomScreenState extends State<UpdateRoomScreen> {
       List<Ruangan> rooms = await _ruanganService.fetchRuangans();
       setState(() {
         _rooms = rooms;
-        _isLoading = false;
       });
     } catch (e) {
-      setState(() {
-        _isLoading = false;
-      });
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         content: Text('Failed to load rooms: $e'),
       ));
+    } finally {
+      setState(() {
+        _isLoading = false;
+      });
     }
   }
 
@@ -86,6 +86,8 @@ class _UpdateRoomScreenState extends State<UpdateRoomScreen> {
               // Loading indicator while fetching rooms
               if (_isLoading)
                 const CircularProgressIndicator()
+              else if (_rooms.isEmpty)
+                const Text('No rooms available')
               else
                 Expanded(
                   child: ListView.builder(
