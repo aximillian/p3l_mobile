@@ -245,13 +245,6 @@ class _HomeScreenState extends State<HomeScreen> {
                 padding: const EdgeInsets.all(8.0),
                 child: Column(
                   children: [
-                    // Text(
-                    //   'Welcome back,',
-                    //   style: GoogleFonts.lato(
-                    //     fontSize: 16, // Normal font size
-                    //     fontWeight: FontWeight.normal, // Normal weight
-                    //   ),
-                    // ),
                     Text(
                       'Your beauty skin is our priority',
                       style: GoogleFonts.lato(

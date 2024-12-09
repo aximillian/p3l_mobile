@@ -12,11 +12,32 @@ class SplashScreen extends StatefulWidget {
   _SplashScreenState createState() => _SplashScreenState();
 }
 
-class _SplashScreenState extends State<SplashScreen> {
+class _SplashScreenState extends State<SplashScreen> with TickerProviderStateMixin {
+  late AnimationController _textController;
+  late Animation<double> _textAnimation;
+
   @override
   void initState() {
     super.initState();
+    _textController = AnimationController(
+      duration: const Duration(seconds: 2),
+      vsync: this,
+    );
+
+    _textAnimation = CurvedAnimation(
+      parent: _textController,
+      curve: Curves.easeIn,
+    );
+
+    _textController.forward();
+
     _startSplashScreen();
+  }
+
+  @override
+  void dispose() {
+    _textController.dispose();
+    super.dispose();
   }
 
   void _startSplashScreen() {
@@ -71,20 +92,23 @@ class _SplashScreenState extends State<SplashScreen> {
                   const SizedBox(height: 20),
 
                   // Title 
-                  Text(
-                    'Your Journey to\nTimeless Beauty\nBegins Here',
-                    textAlign: TextAlign.center,
-                    style: GoogleFonts.lato(
-                      color: AppTheme.pinkColor,
-                      fontSize: 30,
-                      fontWeight: FontWeight.bold,
-                      shadows: const [
-                        Shadow(
-                          blurRadius: 10.0,
-                          color: Colors.black45,
-                          offset: Offset(2, 2),
-                        ),
-                      ],
+                  FadeTransition(
+                    opacity: _textAnimation,
+                    child: Text(
+                      'Your Journey to\nTimeless Beauty\nBegins Here',
+                      textAlign: TextAlign.center,
+                      style: GoogleFonts.lato(
+                        color: AppTheme.pinkColor,
+                        fontSize: 30,
+                        fontWeight: FontWeight.bold,
+                        shadows: const [
+                          Shadow(
+                            blurRadius: 10.0,
+                            color: Colors.black45,
+                            offset: Offset(2, 2),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                   const SizedBox(height: 80),
