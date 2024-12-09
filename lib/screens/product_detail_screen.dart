@@ -39,7 +39,7 @@ class ProductDetailScreen extends StatelessWidget {
                       ClipRRect(
                         borderRadius: BorderRadius.circular(10.0),
                         child: Image.network(
-                          'http://10.0.2.2:8000/images/produk/${product.gambarProduk}',
+                          'http://atmabueatyapi.site/images/produk/${product.gambarProduk}',
                           fit: BoxFit.cover,
                         ),
                       ),
@@ -113,7 +113,7 @@ class ProductDetailScreen extends StatelessWidget {
                               ClipRRect(
                                 borderRadius: BorderRadius.circular(10.0),
                                 child: Image.network(
-                                  'http://10.0.2.2:8000/images/produk/${otherProduct.gambarProduk}',
+                                  'http://atmabueatyapi.site/images/produk/${otherProduct.gambarProduk}',
                                   fit: BoxFit.cover,
                                   width: 100.0,
                                   height: 100.0,

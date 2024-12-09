@@ -75,7 +75,7 @@ class _TreatmentScreenState extends State<TreatmentScreen> {
                         padding: const EdgeInsets.symmetric(vertical: 8.0),
                         child: TreatmentCard(
                           imageUrl:
-                              'http://10.0.2.2:8000/images/perawatan/${treatment.gambarPerawatan}',
+                              'http://atmabueatyapi.site/images/perawatan/${treatment.gambarPerawatan}',
                           treatmentName: treatment.namaPerawatan,
                           price:
                               '${formatter.format(treatment.hargaPerawatan)},00',

@@ -42,7 +42,7 @@ class TreatmentDetailScreen extends StatelessWidget {
                       ClipRRect(
                         borderRadius: BorderRadius.circular(10.0),
                         child: Image.network(
-                          'http://10.0.2.2:8000/images/perawatan/${treatment.gambarPerawatan}',
+                          'http://atmabueatyapi.site/images/perawatan/${treatment.gambarPerawatan}',
                           fit: BoxFit.cover,
                         ),
                       ),
@@ -121,7 +121,7 @@ class TreatmentDetailScreen extends StatelessWidget {
                               ClipRRect(
                                 borderRadius: BorderRadius.circular(10.0),
                                 child: Image.network(
-                                  'http://10.0.2.2:8000/images/perawatan/${otherTreatment.gambarPerawatan}',
+                                  'http://atmabueatyapi.site/images/perawatan/${otherTreatment.gambarPerawatan}',
                                   fit: BoxFit.cover,
                                   width: 100.0,
                                   height: 100.0,

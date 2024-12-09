@@ -85,7 +85,7 @@ class _ProductScreenState extends State<ProductScreen> {
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: ProductCard(
-                            imageUrl: 'http://10.0.2.2:8000/images/produk/${product.gambarProduk}',
+                            imageUrl: 'http://atmabueatyapi.site/images/produk/${product.gambarProduk}',
                             productName: product.namaProduk,
                             price: '${formatter.format(product.hargaProduk)},00',
                             stock: product.stockProduk.toString(),

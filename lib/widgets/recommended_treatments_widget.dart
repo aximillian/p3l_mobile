@@ -91,7 +91,7 @@ class RecommendedTreatmentsWidget extends StatelessWidget {
                                   topRight: Radius.circular(15.0),
                                 ),
                                 child: Image.network(
-                                  'http://10.0.2.2:8000/images/perawatan/${treatment.gambarPerawatan}',
+                                  'http://atmabueatyapi.site/images/perawatan/${treatment.gambarPerawatan}',
                                   height: 100.0,
                                   width: 160.0,
                                   fit: BoxFit.cover,

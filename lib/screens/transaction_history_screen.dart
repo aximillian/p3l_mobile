@@ -29,7 +29,7 @@ class _TransactionHistoryScreenState extends State<TransactionHistoryScreen> {
   Future<void> _getTransactionHistory() async {
     try {
       final response = await http.get(
-        Uri.parse('http://10.0.2.2:8000/api/transaksi/${widget.userId}'),
+        Uri.parse('http://atmabueatyapi.site/api/transaksi/showRiwayatCustomer/${widget.userId}'),
         headers: {
           'Content-Type': 'application/json',
           'Authorization': 'Bearer ${widget.token}',

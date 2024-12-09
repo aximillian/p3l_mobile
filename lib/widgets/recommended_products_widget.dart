@@ -85,7 +85,7 @@ class RecommendedProductsWidget extends StatelessWidget {
                                   topRight: Radius.circular(15.0),
                                 ),
                                 child: Image.network(
-                                  'http://10.0.2.2:8000/images/produk/${product.gambarProduk}',
+                                  'http://atmabueatyapi.site/images/produk/${product.gambarProduk}',
                                   height: 100.0,
                                   width: 160.0,
                                   fit: BoxFit.cover,

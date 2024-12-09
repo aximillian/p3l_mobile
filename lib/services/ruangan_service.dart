@@ -4,7 +4,7 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:p3l_mobile/entity/ruangan.dart';
 
 class RuanganService {
-  static const String baseUrl = 'http://192.168.43.231:8000/api'; // Your API base URL
+  static const String baseUrl = 'http://10.0.2.2:8000/api'; // Your API base URL
   final FlutterSecureStorage _storage = const FlutterSecureStorage();
 
   // Fetch all rooms

@@ -65,7 +65,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   Future<void> _getTransactionHistory(String idCustomer, String token) async {
     try {
       final response = await http.get(
-        Uri.parse('http://10.0.2.2:8000/api/transaksi/$idCustomer'),
+        Uri.parse('http://atmabueatyapi.site/api/transaksi/$idCustomer'),
         headers: {
           'Content-Type': 'application/json',
           'Authorization': 'Bearer $token',
